@@ -53,7 +53,7 @@ function App() {
               <a href='/'>
                 <img
                   className='logo'
-                  src='/public/img/TD-logo.png'
+                  src='/img/TD-logo.png'
                   alt='kvalitná montáž podlahy'
                 />
               </a>
@@ -80,7 +80,7 @@ function App() {
           <div className='three-services'>
             <div className='service'>
               <img
-                src='/public/img/dvl-1of6.jpg'
+                src='/img/dvl-1of6.jpg'
                 alt='kvalitná montáž všetky podlahárske práce'
               />
               <h2>Všetky podlahárske práce </h2>
@@ -92,7 +92,7 @@ function App() {
             </div>
             <div className='service'>
               <img
-                src='/public/img/dvl-2of6.jpg'
+                src='/img/dvl-2of6.jpg'
                 alt='kvalitná montáž prípravné a doplnkové práce'
               />
               <h2>Prípravné a doplnkové práce </h2>
@@ -104,7 +104,7 @@ function App() {
             </div>
             <div className='service'>
               <img
-                src='/public/img/dvl-3of6.jpg'
+                src='/img/dvl-3of6.jpg'
                 alt='kvalitná montáž práce na mieru'
               />
               <h2>Práce na mieru </h2>
@@ -129,7 +129,7 @@ function App() {
       <section className='section-reviews'>
         <div className='review-cards'>
           <div className='review-single'>
-            <img src='/public/img/google-icon.jpg' alt='' />
+            <img src='/img/google-icon.jpg' alt='' />
             <h3 className='name'>Peter </h3>
             <h6 className='from'>Trnávka </h6>
             <p className='stars'>⭐️⭐️⭐️⭐️⭐️</p>
@@ -139,7 +139,7 @@ function App() {
             </p>
           </div>
           <div className='review-single'>
-            <img src='/public/img/google-icon.jpg' alt='' />
+            <img src='/img/google-icon.jpg' alt='' />
             <h3 className='name'>Judita </h3>
             <h6 className='from'>Dúbravka </h6>
             <p className='stars'>⭐️⭐️⭐️⭐️⭐️</p>
@@ -149,7 +149,7 @@ function App() {
             </p>
           </div>
           <div className='review-single'>
-            <img src='/public/img/google-icon.jpg' alt='' />
+            <img src='/img/google-icon.jpg' alt='' />
             <h3 className='name'>Miro </h3>
             <h6 className='from'>Petržalka </h6>
             <p className='stars'>⭐️⭐️⭐️⭐️⭐️</p>
@@ -168,7 +168,7 @@ function App() {
             <div className='three-services'>
               <div className='service'>
                 <img
-                  src='/public/img/dvl-4of6.jpg'
+                  src='/img/dvl-4of6.jpg'
                   alt='kvalitná montáž osadenie zárubní a dverí'
                 />
                 <h2>Osadenie zárubní a dverí </h2>
@@ -179,7 +179,7 @@ function App() {
                 </p>
               </div>
               <div className='service'>
-                <img src='/public/img/dvl-5of6.jpg' alt='' />
+                <img src='/img/dvl-5of6.jpg' alt='' />
                 <h2>Montážne a stolárske práce </h2>
                 <p>
                   Skladanie nábytku, montáž, či úprava kuchynskej linky. Oprava
@@ -189,7 +189,7 @@ function App() {
               </div>
               <div className='service'>
                 <img
-                  src='/public/img/dvl-6of6.jpg'
+                  src='/img/dvl-6of6.jpg'
                   alt='kvalitná montáž altánky a prístrešky na mieru'
                 />
                 <h2>Prístrešky a altánky z dreva</h2>
@@ -434,11 +434,7 @@ function App() {
             <div class='fourCols fourthIcon'>
               <div class='footer-logo'>
                 <a href='/'>
-                  <img
-                    class='footer-logo-img'
-                    src='/public/img/TD-logo.png'
-                    alt=''
-                  />
+                  <img class='footer-logo-img' src='/img/TD-logo.png' alt='' />
                 </a>
               </div>
             </div>
