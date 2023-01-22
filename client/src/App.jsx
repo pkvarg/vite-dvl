@@ -286,13 +286,13 @@ function App() {
       </section>
 
       <section className='section-2' id='contact'>
-        <div className='container add-fluid-90'>
+        <div className='container'>
           <div className='contact'>
             <h3>Kontaktujte nás. </h3>
             <h3>Všetko ostatné vyriešime za Vás.</h3>
-            <h1 className='contact-msg'> </h1>
+
             <h1 className='contact-warning'></h1>
-            <div className='container add-fluid'>
+            <div className='container'>
               <form ref={form} onSubmit={sendEmail}>
                 <label className='form-label'>
                   Meno <sup>*</sup>
@@ -440,9 +440,8 @@ function App() {
             </div>
           </div>
           <div class='picweb'>
-            {' '}
             <a class='developer' href='https://pictusweb.sk' target='_blank'>
-              &#60;&#47;&#62; PICTUSWEB Development{' '}
+              &#60;&#47;&#62; PICTUSWEB Development
             </a>
           </div>
         </div>
