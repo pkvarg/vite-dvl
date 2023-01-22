@@ -139,7 +139,7 @@ const ContactForm = () => {
                 onChange={(e) => setPasswordGroupOne(e.target.value)}
               />
               <input
-                className='form-control'
+                className='form-control hidden'
                 type='text'
                 defaultValue={passwordGroupTwo}
                 onChange={(e) => setPasswordGroupTwo(e.target.value)}
