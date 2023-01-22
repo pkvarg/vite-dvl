@@ -1,13 +1,20 @@
 import React from 'react'
-import { SixSections, ContactForm, Footer } from './components'
+import { Gdpr } from './components'
+import { Page } from './Pages'
+import { TradeRules } from './Components'
+import { BrowserRouter, Link, Route, Routes } from 'react-router-dom'
 
 function App() {
   return (
-    <div className='App'>
-      <SixSections />
-      <ContactForm />
-      <Footer />
-    </div>
+    <BrowserRouter>
+      <div className='App'>
+        <Routes>
+          <Route path='/' element={<Page />} />
+          <Route path='/gdpr' element={<Gdpr />} />
+          <Route path='/trade-rules' element={<TradeRules />} />
+        </Routes>
+      </div>
+    </BrowserRouter>
   )
 }
 

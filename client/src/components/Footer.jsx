@@ -31,7 +31,7 @@ const Footer = () => {
             <div className='firma'>
               <i className='bi bi-r-square'>
                 {' '}
-                <a href='/tradeRules'> Obchodné podmienky</a>
+                <a href='/trade-rules'> Obchodné podmienky</a>
               </i>
               <i className='bi bi-card-text'>
                 {' '}
