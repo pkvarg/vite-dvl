@@ -1,7 +1,17 @@
 import React, { useRef, useState } from 'react'
 import emailjs from '@emailjs/browser'
+import Message from './Message'
 
 const ContactForm = () => {
+  const [message, setMessage] = useState(null)
+  const [messageSuccess, setMessageSuccess] = useState(null)
+  const [name, setName] = useState('')
+  const [address, setAddress] = useState('')
+  const [email, setEmail] = useState('')
+  const [phone, setPhone] = useState('')
+  const [mailMessage, setMailMessage] = useState('')
+  const [checkBox, setCheckBox] = useState(false)
+
   const form = useRef()
   const x = '9%US7xkjNay2pnYrk9d8Z%En+b4%9'
   const y = 'ZnFrwKRL7%Fu$7u2Mt77b^$PPw@Yv'
@@ -9,8 +19,15 @@ const ContactForm = () => {
   const [passwordGroupTwo, setPasswordGroupTwo] = useState(y)
   const sendEmail = (e) => {
     e.preventDefault()
+
     if (passwordGroupOne !== x || passwordGroupTwo !== y) {
-      alert('Neodoslané! Kontaktujte nás telefonicky alebo emailom, prosím')
+      setMessage('Neodoslané! Kontaktujte nás telefonicky alebo emailom.')
+      setName('')
+      setAddress('')
+      setEmail('')
+      setPhone('')
+      setMailMessage('')
+      setCheckBox(false)
     } else {
       emailjs
         .sendForm(
@@ -28,7 +45,13 @@ const ContactForm = () => {
             console.log(error.text)
           }
         )
-      alert('správa úspešne odoslaná')
+      setMessageSuccess('Vaša správa bola úspešne odoslaná!')
+      setName('')
+      setAddress('')
+      setEmail('')
+      setPhone('')
+      setMailMessage('')
+      setCheckBox(false)
     }
   }
 
@@ -38,8 +61,10 @@ const ContactForm = () => {
         <div className='contact'>
           <h3>Kontaktujte nás. </h3>
           <h3>Všetko ostatné vyriešime za Vás.</h3>
-
-          <h1 className='contact-warning'></h1>
+          {messageSuccess && (
+            <Message variant='success'>{messageSuccess}</Message>
+          )}
+          {message && <Message variant='danger'>{message}</Message>}
           <div className='container'>
             <form ref={form} onSubmit={sendEmail}>
               <label className='form-label'>
@@ -49,6 +74,8 @@ const ContactForm = () => {
                 className='form-control'
                 type='text'
                 name='user_name'
+                value={name}
+                onChange={(e) => setName(e.target.value)}
                 required='required'
               />
               <label className='form-label'>
@@ -58,6 +85,8 @@ const ContactForm = () => {
                 className='form-control'
                 type='text'
                 name='user_address'
+                value={address}
+                onChange={(e) => setAddress(e.target.value)}
                 required='required'
               />
               <label className='form-label'>Email</label>
@@ -65,6 +94,8 @@ const ContactForm = () => {
                 className='form-control'
                 type='email'
                 name='user_email'
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 required='required'
               />
               <label className='form-label'>
@@ -74,6 +105,8 @@ const ContactForm = () => {
                 className='form-control'
                 type='text'
                 name='user_phone'
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
                 required='required'
               />
               <label className='form-label'>
@@ -83,6 +116,8 @@ const ContactForm = () => {
                 className='form-control'
                 rows='5'
                 name='message'
+                value={mailMessage}
+                onChange={(e) => setMailMessage(e.target.value)}
                 required='required'
               ></textarea>
               <div className='form-check my-3'>
@@ -90,7 +125,7 @@ const ContactForm = () => {
                   className='form-check-input'
                   id='flexCheckDefault'
                   type='checkbox'
-                  value=''
+                  value={checkBox}
                   required='required'
                 />
                 <label className='form-check-label' htmlFor='flexCheckDefault'>
@@ -100,14 +135,12 @@ const ContactForm = () => {
               <input
                 className='form-control hidden'
                 type='text'
-                // name='password1'
                 defaultValue={passwordGroupOne}
                 onChange={(e) => setPasswordGroupOne(e.target.value)}
               />
               <input
-                className='form-control hidden'
+                className='form-control'
                 type='text'
-                name='password2'
                 defaultValue={passwordGroupTwo}
                 onChange={(e) => setPasswordGroupTwo(e.target.value)}
               />
