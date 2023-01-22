@@ -992,13 +992,12 @@ i.bi.bi-r-square {
 
   .picweb {
     margin: 0;
-    text-align: center;
-    width: 88vw;
+    text-align: left;
   }
 
   a.developer {
     font-size: 25px;
-    line-height: 25px;
+    display: inline-block;
   }
   .footer-logo {
     display: none;
