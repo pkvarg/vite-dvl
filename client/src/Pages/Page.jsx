@@ -1,11 +1,12 @@
 import React from 'react'
-import { SixSections, ContactForm, Footer } from '../components'
+import { SixSections, ContactForm, Footer, ScrollToTop } from '../components'
 
 const Page = () => {
   return (
     <>
       <SixSections />
       <ContactForm />
+      <ScrollToTop />
       <Footer />
     </>
   )

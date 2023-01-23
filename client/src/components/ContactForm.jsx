@@ -12,6 +12,10 @@ const ContactForm = () => {
   const [mailMessage, setMailMessage] = useState('')
   const [checkBox, setCheckBox] = useState(false)
 
+  const handleCheckBox = () => {
+    setCheckBox((current) => !current)
+  }
+
   const form = useRef()
   const x = '9%US7xkjNay2pnYrk9d8Z%En+b4%9'
   const y = 'ZnFrwKRL7%Fu$7u2Mt77b^$PPw@Yv'
@@ -27,7 +31,8 @@ const ContactForm = () => {
       setEmail('')
       setPhone('')
       setMailMessage('')
-      setCheckBox(false)
+      const element = document.getElementById('contact')
+      element.scrollIntoView({ behavior: 'smooth' })
     } else {
       emailjs
         .sendForm(
@@ -45,13 +50,14 @@ const ContactForm = () => {
             console.log(error.text)
           }
         )
-      setMessageSuccess('Vaša správa bola úspešne odoslaná!')
       setName('')
       setAddress('')
       setEmail('')
       setPhone('')
       setMailMessage('')
-      setCheckBox(false)
+      const element = document.getElementById('contact')
+      element.scrollIntoView({ behavior: 'smooth' })
+      setMessageSuccess('Vaša správa bola úspešne odoslaná!')
     }
   }
 
@@ -125,7 +131,9 @@ const ContactForm = () => {
                   className='form-check-input'
                   id='flexCheckDefault'
                   type='checkbox'
+                  defaultChecked={false}
                   value={checkBox}
+                  onChange={handleCheckBox}
                   required='required'
                 />
                 <label className='form-check-label' htmlFor='flexCheckDefault'>
@@ -151,9 +159,6 @@ const ContactForm = () => {
           </div>
         </div>
       </div>
-      {/* <button className='scrollToTopBtn' onClick={(e) => handleScroll}>
-        ^
-      </button> */}
     </section>
   )
 }

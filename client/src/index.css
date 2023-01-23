@@ -109,7 +109,6 @@ span.navbar-toggler-icon {
   width: fit-content;
   font-size: 45px;
   padding: 15px;
-  /* border: 2px solid #fff; */
   border-radius: 15px;
   background-color: #039f2f;
   color: #fff;
@@ -431,7 +430,7 @@ a.call-us-four-points:hover {
   color: #fff;
 }
 
-.contact-msg {
+/* .contact-msg {
   color: #83cd29;
   font-size: 25px;
   text-transform: uppercase;
@@ -443,13 +442,13 @@ a.call-us-four-points:hover {
   font-size: 35px;
   text-transform: uppercase;
   padding-top: 30px;
-}
+} */
 
 .hidden {
   display: none;
 }
 
-.scrollToTopBtn {
+/* .scrollToTopBtn {
   border-radius: 50%;
   font-size: 1.5rem;
   background-color: #fe9400;
@@ -461,22 +460,59 @@ a.call-us-four-points:hover {
   position: fixed;
   bottom: 330px;
   right: 50px;
-  /* keep it at the top of everything else */
   z-index: 100;
-  /* hide it at first */
-  /* UPDATE: remove display none */
-  /* 
-  /* hide with opacity */
   opacity: 0;
-  /* also add a translate effect */
   transform: translateY(100px);
-  /* and a transition */
   transition: all 0.5s ease;
 }
 
 .showBtn {
   opacity: 1;
   transform: translateY(0);
+} */
+
+.top-to-btm {
+  position: relative;
+}
+.icon-position {
+  position: fixed;
+  bottom: 80px;
+  right: 25px;
+  z-index: 20;
+}
+.icon-style {
+  background-color: #fe9400;
+  border: 1px solid #000000;
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+  color: #fff;
+  cursor: pointer;
+  animation: movebtn 3s ease-in-out infinite;
+  transition: all 0.5s ease-in-out;
+}
+.icon-style:hover {
+  animation: none;
+  background: #fff;
+  color: #d57703;
+  border: 2px solid #d57703;
+}
+@keyframes movebtn {
+  0% {
+    transform: translateY(0px);
+  }
+  25% {
+    transform: translateY(10px);
+  }
+  50% {
+    transform: translateY(0px);
+  }
+  75% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
 }
 
 sup {
@@ -633,7 +669,7 @@ i.bi.bi-r-square {
   color: #fff !important;
 }
 
-/* MEDIA QUERIES */
+/* MEDIA QUERIES MEDIA QUERIES MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES MEDIA QUERIES MEDIA QUERIES MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIESMEDIA QUERIES MEDIA QUERIES MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIESMEDIA QUERIES MEDIA QUERIES MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIESMEDIA QUERIES MEDIA QUERIES MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES */
 
 @media (min-width: 1181px) and (max-width: 1440px) {
   img.logo {
@@ -699,6 +735,7 @@ i.bi.bi-r-square {
   .call-us h4 {
     padding: 10px;
     line-height: 5px;
+    border-radius: 7.5px;
   }
 
   span.main-span {
@@ -752,7 +789,7 @@ i.bi.bi-r-square {
     justify-content: center;
     border: none;
     font-size: 20px;
-    border-radius: 5px;
+    border-radius: 7.5px;
   }
 
   a.call-us-body h4 {
@@ -859,6 +896,8 @@ i.bi.bi-r-square {
     margin-top: 8%;
     font-size: 55px;
     text-align: center;
+    border-radius: 7.5px !important;
+
     padding: 10px;
   }
 
@@ -904,6 +943,7 @@ i.bi.bi-r-square {
     margin-top: 15%;
     border: none;
     font-size: 55px;
+    border-radius: 7.5px;
   }
 
   .call-us-summary.mobile h4 {
