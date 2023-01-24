@@ -1,9 +1,10 @@
 import React from 'react'
-import { Footer } from '../Components'
+import { Footer, ScrollToTop } from '../Components'
 
 const Gdpr = () => {
   return (
     <>
+      <ScrollToTop />
       <div className='trade-gd-body'>
         <div className='container add-fluid-90'>
           <div className='gdpr'>

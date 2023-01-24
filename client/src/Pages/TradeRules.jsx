@@ -1,9 +1,10 @@
 import React from 'react'
-import { Footer } from '../Components'
+import { Footer, ScrollToTop } from '../Components'
 
 const TradeRules = () => {
   return (
     <>
+      <ScrollToTop />
       <div class='trade-gd-body'>
         <div class='container add-fluid-90'>
           <div class='gdpr trade-height'>
