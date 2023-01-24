@@ -1,6 +1,5 @@
 import React from 'react'
 import { Page, Gdpr, TradeRules } from './Pages'
-import { Footer } from './Components'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 function App() {
@@ -12,7 +11,6 @@ function App() {
           <Route path='/gdpr' element={<Gdpr />} />
           <Route exact path='/trade-rules' element={<TradeRules />} />
         </Routes>
-        <Footer />
       </div>
     </BrowserRouter>
   )

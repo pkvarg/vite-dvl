@@ -590,7 +590,6 @@ i.bi.bi-r-square {
 
 .trade-gd-body {
   background-color: #adbbcb;
-  height: 75vh;
 }
 
 .gdpr {
@@ -598,6 +597,10 @@ i.bi.bi-r-square {
   text-align: justify;
   padding-top: 45px;
   padding-bottom: 45px;
+}
+
+.gdpr.trade-height {
+  height: 70vh;
 }
 
 #consent-popup {
@@ -934,11 +937,6 @@ i.bi.bi-r-square {
     height: 0;
   }
 
-  /* .sluzby-left,
-  span.sluzby-left-title {
-    font-size: 50px;
-  } */
-
   .contact h3 {
     font-size: 30px;
     text-align: center;
@@ -1029,11 +1027,11 @@ i.bi.bi-r-square {
   }
 
   .gdpr h1 {
-    font-size: 70px;
+    font-size: 30px;
     text-align: center;
   }
   .gdpr h3 {
-    font-size: 60px;
+    font-size: 25px;
   }
 }
 

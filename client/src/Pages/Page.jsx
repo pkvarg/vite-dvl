@@ -1,5 +1,5 @@
 import React from 'react'
-import { SixSections, ContactForm, ScrollToTop } from '../components'
+import { SixSections, ContactForm, ScrollToTop, Footer } from '../components'
 import CookieConsent from 'react-cookie-consent'
 
 const Page = () => {
@@ -38,6 +38,7 @@ const Page = () => {
         cookies. Nepoužívame funkčné ani marketingové cookies.{' '}
         <a href='/gdpr'> GDPR</a>
       </CookieConsent>
+      <Footer />
     </>
   )
 }

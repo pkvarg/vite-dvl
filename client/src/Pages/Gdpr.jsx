@@ -1,4 +1,5 @@
 import React from 'react'
+import { Footer } from '../Components'
 
 const Gdpr = () => {
   return (
@@ -52,6 +53,7 @@ const Gdpr = () => {
             </h3>
           </div>
         </div>
+        <Footer />
       </div>
     </>
   )
