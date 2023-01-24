@@ -164,7 +164,7 @@ a.call-us-body:hover {
 
 .carousel-img {
   background-image: linear-gradient(to bottom, #aebac968, #ff910077),
-    url('../img/dvl-main.jpg');
+    url('/img/dvl-main.jpg');
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
@@ -430,46 +430,9 @@ a.call-us-four-points:hover {
   color: #fff;
 }
 
-/* .contact-msg {
-  color: #83cd29;
-  font-size: 25px;
-  text-transform: uppercase;
-  padding-top: 30px;
-}
-
-.contact-warning {
-  color: red;
-  font-size: 35px;
-  text-transform: uppercase;
-  padding-top: 30px;
-} */
-
 .hidden {
   display: none;
 }
-
-/* .scrollToTopBtn {
-  border-radius: 50%;
-  font-size: 1.5rem;
-  background-color: #fe9400;
-  color: #fff;
-  border: 1px solid #000;
-  cursor: pointer;
-  width: 60px;
-  height: 60px;
-  position: fixed;
-  bottom: 330px;
-  right: 50px;
-  z-index: 100;
-  opacity: 0;
-  transform: translateY(100px);
-  transition: all 0.5s ease;
-}
-
-.showBtn {
-  opacity: 1;
-  transform: translateY(0);
-} */
 
 .top-to-btm {
   position: relative;
@@ -627,6 +590,7 @@ i.bi.bi-r-square {
 
 .trade-gd-body {
   background-color: #adbbcb;
+  height: 75vh;
 }
 
 .gdpr {

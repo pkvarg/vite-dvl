@@ -1,5 +1,7 @@
 {
-  "name": "client",
+  "name": "hostinger-react",
+  "homepage": "https://kvalitnamontaz.sk",
+  "description": "my react application",
   "private": true,
   "version": "0.0.0",
   "type": "module",
