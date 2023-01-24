@@ -36,7 +36,7 @@ const ContactForm = () => {
     } else {
       emailjs
         .sendForm(
-          'service_45sakxl',
+          'service_6hlp78w',
           'template_4qtokqw',
           form.current,
           'user_mnqXPxOn2rVCZkKeC92I9'
