@@ -1,5 +1,4 @@
 import React from 'react'
-import Footer from './Footer'
 
 const TradeRules = () => {
   return (
@@ -11,7 +10,6 @@ const TradeRules = () => {
           </div>
         </div>
       </div>
-      <Footer />
     </>
   )
 }

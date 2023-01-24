@@ -1,12 +1,11 @@
 import React from 'react'
-import Footer from './Footer'
 
 const Gdpr = () => {
   return (
     <>
-      <div class='trade-gd-body'>
-        <div class='container add-fluid-90'>
-          <div class='gdpr'>
+      <div className='trade-gd-body'>
+        <div className='container add-fluid-90'>
+          <div className='gdpr'>
             <h1>ZÁSADY SPRACOVÁVANIA OSOBNÝCH ÚDAJOV</h1>
             <h3>
               Ochranu osobných údajov berieme vážne. Je pre nás dôležité, aby
@@ -54,7 +53,6 @@ const Gdpr = () => {
           </div>
         </div>
       </div>
-      <Footer />
     </>
   )
 }

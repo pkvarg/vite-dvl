@@ -1,8 +1,7 @@
 import React from 'react'
-import { Gdpr } from './components'
-import { Page } from './Pages'
-import { TradeRules } from './Components'
-import { BrowserRouter, Link, Route, Routes } from 'react-router-dom'
+import { Page, Gdpr, TradeRules } from './Pages'
+import { Footer } from './Components'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
 function App() {
   return (
@@ -13,6 +12,7 @@ function App() {
           <Route path='/gdpr' element={<Gdpr />} />
           <Route path='/trade-rules' element={<TradeRules />} />
         </Routes>
+        <Footer />
       </div>
     </BrowserRouter>
   )
