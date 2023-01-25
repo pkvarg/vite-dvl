@@ -52,6 +52,9 @@ const Gdpr = () => {
               Váš online identifikátor, a preto s týmto údajom nakladáme so
               zvýšenou starostlivosťou.{' '}
             </h3>
+            <a href='/' className='gdpr-home'>
+              Domov
+            </a>
           </div>
         </div>
         <Footer />

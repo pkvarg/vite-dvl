@@ -127,14 +127,16 @@ i.fa-sharp.fa-solid.fa-mobile-screen {
 }
 
 .call-us h4:hover {
-  background-color: #fe9400;
-  color: #fff;
+  background-color: transparent;
+  color: #000000;
+  border: 2px solid #000000;
 }
 
 a.call-us-summary:hover,
 a.call-us-body:hover {
-  color: #fff;
-  background-color: #fe9400;
+  background-color: transparent;
+  color: #000000;
+  border: 2px solid #000000;
 }
 
 .carousel {
@@ -198,7 +200,6 @@ a.call-us-body:hover {
 
 .service h2 {
   margin-top: 20px;
-  /* margin-left: 5px; */
   margin-right: 10%;
   text-align: center;
 }
@@ -361,8 +362,9 @@ i.fa-solid {
 }
 
 a.call-us-four-points:hover {
-  color: #fff;
-  background-color: #fe9400;
+  background-color: transparent;
+  color: #000000;
+  border: 2px solid #000000;
 }
 
 .call-us-summary {
@@ -426,8 +428,9 @@ a.call-us-four-points:hover {
   text-transform: uppercase;
 }
 .btn.btn-send:hover {
-  background-color: #fe9400;
-  color: #fff;
+  background-color: transparent;
+  color: #000000;
+  border: 2px solid #000000;
 }
 
 .hidden {
@@ -444,12 +447,12 @@ a.call-us-four-points:hover {
   z-index: 20;
 }
 .icon-style {
-  background-color: #fe9400;
+  background-color: #ffffff;
   border: 1px solid #000000;
   border-radius: 50%;
   height: 50px;
   width: 50px;
-  color: #fff;
+  color: #000;
   cursor: pointer;
   animation: movebtn 3s ease-in-out infinite;
   transition: all 0.5s ease-in-out;
@@ -596,11 +599,21 @@ i.bi.bi-r-square {
   color: #fff;
   text-align: justify;
   padding-top: 45px;
-  padding-bottom: 45px;
+  padding-bottom: 90px;
 }
 
 .gdpr.trade-height {
   height: 70vh;
+}
+
+.gdpr-home {
+  color: #fff;
+  float: right;
+  font-size: 25px;
+}
+
+.gdpr-home:hover {
+  color: #000000;
 }
 
 #consent-popup {
@@ -749,7 +762,8 @@ i.bi.bi-r-square {
   }
 
   a.call-us-body {
-    margin: 0;
+    margin-left: 15%;
+    margin-right: 15%;
     padding: 5px;
     margin-top: 40px;
     display: flex;
@@ -857,7 +871,8 @@ i.bi.bi-r-square {
   }
 
   a.call-us-four-points {
-    margin: 0;
+    margin-left: 12.5%;
+    margin-right: 12.5%;
     display: flex;
     justify-content: center;
     margin-top: 8%;
@@ -865,7 +880,8 @@ i.bi.bi-r-square {
     text-align: center;
     border-radius: 7.5px !important;
 
-    padding: 10px;
+    margin-bottom: 20px;
+    padding: 7.5px;
   }
 
   .call-us-four-points h4 {
@@ -879,32 +895,35 @@ i.bi.bi-r-square {
     border: none;
     font-size: 55px;
     border: 2px solid #fe9400;
-    margin-bottom: 120px;
+    margin-bottom: 40px;
   }
 
   .section-about {
-    padding-bottom: 14%;
+    padding-bottom: 10px;
   }
 
   .about-text {
-    margin-left: 3%;
-    margin-right: 3%;
+    border: none;
   }
 
   .about-box {
-    padding-top: 60px;
+    padding-top: 0px;
   }
   .about-box h3 {
-    font-size: 22.5px;
+    font-size: 20px;
+    text-align: justify;
+    width: 100vw;
   }
 
   .about-box h4 {
     font-size: 22.5px;
+    padding-bottom: 0px;
   }
 
   .call-us-summary.mobile {
-    margin: 0;
-    padding: 10px;
+    margin-left: 12.5%;
+    margin-right: 12.5%;
+    padding: 7.5px;
     display: flex;
     justify-content: center;
     margin-top: 15%;
@@ -916,10 +935,6 @@ i.bi.bi-r-square {
   .call-us-summary.mobile h4 {
     margin: 0;
   }
-
-  /* .sticky-lg-top {
-    top: 0 !important;
-  } */
 
   .add-fluid {
     max-width: 100%;
@@ -970,13 +985,14 @@ i.bi.bi-r-square {
   }
 
   .copyright {
-    font-size: 25px;
+    font-size: 20px;
   }
 
   .rad {
     display: flex;
     flex-direction: column;
     margin-top: 100px;
+    gap: 15px;
   }
 
   .fourCols {
@@ -1024,6 +1040,14 @@ i.bi.bi-r-square {
   #consent-popup {
     left: 0;
     right: 0;
+  }
+
+  .gdpr {
+    padding-bottom: 0px;
+  }
+
+  .gdpr-home {
+    padding-top: 15px;
   }
 
   .gdpr h1 {

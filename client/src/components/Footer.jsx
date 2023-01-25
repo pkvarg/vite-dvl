@@ -21,18 +21,17 @@ const Footer = () => {
               <p>kvalitnamontaz.sk</p>
               <i className='bi bi-telephone-fill'>
                 <a className='developer' href='tel:+421908564435'>
-                  {' '}
-                  0908 564 435
+                  &nbsp; 0908 564 435
                 </a>
               </i>
             </div>
           </div>
           <div className='fourCols'>
             <div className='firma'>
-              <i className='bi bi-r-square'>
+              {/* <i className='bi bi-r-square'>
                 {' '}
                 <a href='/trade-rules'> Obchodné podmienky</a>
-              </i>
+              </i> */}
               <i className='bi bi-card-text'>
                 {' '}
                 <a href='/gdpr'> GDPR</a>
