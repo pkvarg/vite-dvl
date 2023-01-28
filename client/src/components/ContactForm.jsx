@@ -17,8 +17,8 @@ const ContactForm = () => {
   }
 
   const form = useRef()
-  const x = '9%US7xkjNay2pnYrk9d8Z%En+b4%9'
-  const y = 'ZnFrwKRL7%Fu$7u2Mt77b^$PPw@Yv'
+  const x = import.meta.env.VITE_EMAIL_EXTRA_ONE
+  const y = import.meta.env.VITE_EMAIL_EXTRA_TWO
   const [passwordGroupOne, setPasswordGroupOne] = useState(x)
   const [passwordGroupTwo, setPasswordGroupTwo] = useState(y)
   const sendEmail = (e) => {
@@ -36,10 +36,10 @@ const ContactForm = () => {
     } else {
       emailjs
         .sendForm(
-          'service_6hlp78w',
-          'template_4qtokqw',
+          import.meta.env.VITE_EMAILJS_SERVICE,
+          import.meta.env.VITE_EMAILJS_TEMPLATE,
           form.current,
-          'user_mnqXPxOn2rVCZkKeC92I9'
+          import.meta.env.VITE_EMAILJS_USER
         )
         .then(
           (result) => {
@@ -95,7 +95,9 @@ const ContactForm = () => {
                 onChange={(e) => setAddress(e.target.value)}
                 required='required'
               />
-              <label className='form-label'>Email</label>
+              <label className='form-label'>
+                Email <sup>*</sup>
+              </label>
               <input
                 className='form-control'
                 type='email'
