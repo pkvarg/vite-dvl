@@ -44,10 +44,12 @@ const ContactForm = () => {
         .then(
           (result) => {
             console.log(result.text)
+            setMessageSuccess('Vaša správa bola úspešne odoslaná!')
             console.log('message sent')
           },
           (error) => {
             console.log(error.text)
+            setMessage('Chyba! Kontaktujte nás telefonicky alebo emailom.')
           }
         )
       setName('')
@@ -57,7 +59,6 @@ const ContactForm = () => {
       setMailMessage('')
       const element = document.getElementById('contact')
       element.scrollIntoView({ behavior: 'smooth' })
-      setMessageSuccess('Vaša správa bola úspešne odoslaná!')
     }
   }
 
