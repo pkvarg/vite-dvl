@@ -14,8 +14,8 @@ const SixSections = () => {
               <a href='/'>
                 <img
                   className='logo'
-                  src='/img/TD-logo.png'
-                  alt='kvalitná montáž podlahy'
+                  src='/img/TD-logo.webp'
+                  alt='kvalitna montaz podlahy'
                 />
               </a>
               <h2>KVALITNÁ MONTÁŽ </h2>
@@ -32,7 +32,7 @@ const SixSections = () => {
               </a>
             </div>
           </div>
-          <img className='carousel-img' />
+          <div className='carousel-img'></div>
         </div>
       </div>
       <div id='services'></div>
@@ -41,8 +41,10 @@ const SixSections = () => {
           <div className='three-services'>
             <div className='service'>
               <img
-                src='/img/dvl-1of6.jpg'
+                src='/img/dvl-1of6.webp'
                 alt='kvalitná montáž všetky podlahárske práce'
+                width='90%'
+                height='auto'
               />
               <h2>Všetky podlahárske práce </h2>
               <p>
@@ -53,8 +55,10 @@ const SixSections = () => {
             </div>
             <div className='service'>
               <img
-                src='/img/dvl-2of6.jpg'
+                src='/img/dvl-2of6.webp'
                 alt='kvalitná montáž prípravné a doplnkové práce'
+                width='90%'
+                height='auto'
               />
               <h2>Prípravné a doplnkové práce </h2>
               <p>
@@ -65,8 +69,10 @@ const SixSections = () => {
             </div>
             <div className='service'>
               <img
-                src='/img/dvl-3of6.jpg'
+                src='/img/dvl-3of6.webp'
                 alt='kvalitná montáž práce na mieru'
+                width='90%'
+                height='auto'
               />
               <h2>Práce na mieru </h2>
               <p>
@@ -90,7 +96,7 @@ const SixSections = () => {
       <section className='section-reviews'>
         <div className='review-cards'>
           <div className='review-single'>
-            <img src='/img/google-icon.jpg' alt='' />
+            <img src='/img/google-icon.webp' alt='' />
             <h3 className='name'>Peter </h3>
             <h6 className='from'>Trnávka </h6>
             <p className='stars'>⭐️⭐️⭐️⭐️⭐️</p>
@@ -100,7 +106,7 @@ const SixSections = () => {
             </p>
           </div>
           <div className='review-single'>
-            <img src='/img/google-icon.jpg' alt='' />
+            <img src='/img/google-icon.webp' alt='' />
             <h3 className='name'>Judita </h3>
             <h6 className='from'>Dúbravka </h6>
             <p className='stars'>⭐️⭐️⭐️⭐️⭐️</p>
@@ -110,7 +116,7 @@ const SixSections = () => {
             </p>
           </div>
           <div className='review-single'>
-            <img src='/img/google-icon.jpg' alt='' />
+            <img src='/img/google-icon.webp' alt='' />
             <h3 className='name'>Miro </h3>
             <h6 className='from'>Petržalka </h6>
             <p className='stars'>⭐️⭐️⭐️⭐️⭐️</p>
@@ -129,8 +135,10 @@ const SixSections = () => {
             <div className='three-services'>
               <div className='service'>
                 <img
-                  src='/img/dvl-4of6.jpg'
+                  src='/img/dvl-4of6.webp'
                   alt='kvalitná montáž osadenie zárubní a dverí'
+                  width='90%'
+                  height='auto'
                 />
                 <h2>Osadenie zárubní a dverí </h2>
                 <p>
@@ -140,7 +148,12 @@ const SixSections = () => {
                 </p>
               </div>
               <div className='service'>
-                <img src='/img/dvl-5of6.jpg' alt='' />
+                <img
+                  src='/img/dvl-5of6.webp'
+                  alt='kvalitna montaz stolarske prace'
+                  width='90%'
+                  height='auto'
+                />
                 <h2>Montážne a stolárske práce </h2>
                 <p>
                   Skladanie nábytku, montáž, či úprava kuchynskej linky. Oprava
@@ -150,8 +163,10 @@ const SixSections = () => {
               </div>
               <div className='service'>
                 <img
-                  src='/img/dvl-6of6.jpg'
+                  src='/img/dvl-6of6.webp'
                   alt='kvalitná montáž altánky a prístrešky na mieru'
+                  width='90%'
+                  height='auto'
                 />
                 <h2>Prístrešky a altánky z dreva</h2>
                 <p>

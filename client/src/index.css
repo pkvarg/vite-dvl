@@ -166,7 +166,7 @@ a.call-us-body:hover {
 
 .carousel-img {
   background-image: linear-gradient(to bottom, #aebac968, #ff910077),
-    url('/img/dvl-main.jpg');
+    url('/img/dvl-main.webp');
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;

@@ -40,10 +40,10 @@ const Footer = () => {
           </div>
           <div className='fourCols fourthIcon'>
             <div className='footer-logo'>
-              <a href='/'>
+              <a href='/' className='abc'>
                 <img
                   className='footer-logo-img'
-                  src='/img/TD-logo.png'
+                  src='/img/TD-logo.webp'
                   alt=''
                 />
               </a>

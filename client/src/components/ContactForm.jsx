@@ -79,6 +79,7 @@ const ContactForm = () => {
               </label>
               <input
                 className='form-control'
+                label='Meno'
                 type='text'
                 name='user_name'
                 value={name}
@@ -90,6 +91,7 @@ const ContactForm = () => {
               </label>
               <input
                 className='form-control'
+                label='Mesto a adresa'
                 type='text'
                 name='user_address'
                 value={address}
@@ -101,6 +103,7 @@ const ContactForm = () => {
               </label>
               <input
                 className='form-control'
+                label='Email'
                 type='email'
                 name='user_email'
                 value={email}
@@ -112,6 +115,7 @@ const ContactForm = () => {
               </label>
               <input
                 className='form-control'
+                label='Telefon'
                 type='text'
                 name='user_phone'
                 value={phone}
@@ -123,6 +127,7 @@ const ContactForm = () => {
               </label>
               <textarea
                 className='form-control'
+                label='Text'
                 rows='5'
                 name='message'
                 value={mailMessage}
@@ -132,6 +137,7 @@ const ContactForm = () => {
               <div className='form-check my-3'>
                 <input
                   className='form-check-input'
+                  label='Checkbox'
                   id='flexCheckDefault'
                   type='checkbox'
                   defaultChecked={false}
@@ -146,11 +152,13 @@ const ContactForm = () => {
               <input
                 className='form-control hidden'
                 type='text'
+                label='Password'
                 defaultValue={passwordGroupOne}
                 onChange={(e) => setPasswordGroupOne(e.target.value)}
               />
               <input
                 className='form-control hidden'
+                label='Password'
                 type='text'
                 defaultValue={passwordGroupTwo}
                 onChange={(e) => setPasswordGroupTwo(e.target.value)}
