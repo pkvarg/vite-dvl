@@ -1,8 +1,52 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { SixSections, ContactForm, ScrollToTop, Footer } from '../components'
 import CookieConsent from 'react-cookie-consent'
+import { initializeApp } from 'firebase/app'
+import { getAnalytics } from 'firebase/analytics'
+import axios from 'axios'
+
+const firebaseConfig = {
+  apiKey: import.meta.env.VITE_FIREBASE_APIKEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
+  measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID,
+}
 
 const Page = () => {
+  const [cookieAccept, setCookieAccept] = useState(false)
+  const config = {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  }
+
+  const increaseVisitorsDeclined = async () => {
+    const { data } = await axios.put(
+      // `https://pictusweb.online/api/visitors/dvl/increase`,
+      `http://localhost:2000/api/visitors/dvl/increase`,
+      config
+    )
+    console.log('vstrsDec:', data.visitorsDeclinedDvl)
+  }
+
+  const increaseVisitorsAgreed = async () => {
+    const { data } = await axios.put(
+      // `https://pictusweb.online/api/visitors/dvl/agree/increase`,
+      `http://localhost:2000/api/visitors/dvl/agree/increase`,
+      config
+    )
+    console.log('vstrsAgr:', data.visitorsAgreedDvl)
+  }
+
+  // Initialize Firebase
+  if (cookieAccept) {
+    const app = initializeApp(firebaseConfig)
+    const analytics = getAnalytics(app)
+  }
+
   return (
     <>
       <SixSections />
@@ -25,7 +69,8 @@ const Page = () => {
         expires={365}
         enableDeclineButton
         onDecline={() => {
-          alert('nay!')
+          setCookieAccept(false)
+          increaseVisitorsDeclined()
         }}
         declineButtonStyle={{
           background: 'red',
@@ -33,6 +78,10 @@ const Page = () => {
           fontSize: '17.5px',
         }}
         declineButtonText='Nesúhlasím'
+        onAccept={() => {
+          setCookieAccept(true)
+          increaseVisitorsAgreed()
+        }}
       >
         Táto stránka používa len analytické a pre fungovanie webu nevyhnutné
         cookies. Nepoužívame funkčné ani marketingové cookies.{' '}

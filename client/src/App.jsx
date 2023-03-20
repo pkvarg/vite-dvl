@@ -1,5 +1,5 @@
 import React from 'react'
-import { Page, Gdpr, TradeRules } from './Pages'
+import { Page, Gdpr, TradeRules, ErrorPage, Counter } from './Pages'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 function App() {
@@ -10,6 +10,8 @@ function App() {
           <Route path='/' element={<Page />} />
           <Route path='/gdpr' element={<Gdpr />} />
           <Route exact path='/trade-rules' element={<TradeRules />} />
+          <Route path='/counter' element={<Counter />} />
+          <Route path='*' element={<ErrorPage />} />
         </Routes>
       </div>
     </BrowserRouter>

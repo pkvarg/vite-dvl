@@ -649,6 +649,57 @@ i.bi.bi-r-square {
   color: #fff !important;
 }
 
+.error-page {
+  background-color: #adbbcb;
+  color: #fff;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.error-link {
+  text-decoration: none;
+  color: #fff;
+  font-size: 25px;
+}
+
+.counter-page {
+  background-color: #fe9400;
+  color: #fff;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  padding: 35px;
+}
+
+.counter-page button {
+  border: 1px solid #fff;
+  background: transparent;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 25px;
+  cursor: pointer;
+}
+
+.counter-page button:hover {
+  background-color: #f0eceb;
+  color: #fe9400;
+}
+
+.stats {
+  margin-top: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.stats p {
+  margin: 0;
+}
+
 /* MEDIA QUERIES MEDIA QUERIES MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES MEDIA QUERIES MEDIA QUERIES MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIESMEDIA QUERIES MEDIA QUERIES MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIESMEDIA QUERIES MEDIA QUERIES MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIESMEDIA QUERIES MEDIA QUERIES MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES */
 
 @media (min-width: 1181px) and (max-width: 1440px) {
