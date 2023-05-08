@@ -96,34 +96,94 @@ const SixSections = () => {
       <section className='section-reviews'>
         <div className='review-cards'>
           <div className='review-single'>
-            <img src='/img/google-icon.webp' alt='' />
-            <h3 className='name'>Peter </h3>
-            <h6 className='from'>Trnávka </h6>
+            <img
+              className='google-img'
+              src='/img/google-icon.webp'
+              alt='google-icon'
+            />
+            <h3 className='name'>Daniel Sagath</h3>
+            <div className='review-face-div'>
+              <img
+                className='review-face'
+                src='/img/DanielSagath.webp'
+                alt='review-icon'
+              />
+            </div>
+
+            {/* <h6 className='from'>Trnávka </h6> */}
             <p className='stars'>⭐️⭐️⭐️⭐️⭐️</p>
-            <p className='review'>
-              Rýchle jasné jednanie. Dodržané slovo, termín aj cena. Odporúčam a
-              budem volať znova.
-            </p>
+            <a
+              className='review-link'
+              href='https://www.google.com/maps/contrib/107617414494001322394/place/ChIJiUYfNhNyjyMRCenVnC9uwc8/@48.1357804,17.1107673,16z/data=!4m6!1m5!8m4!1e1!2s107617414494001322394!3m1!1e1?hl=sk'
+              target='_blank'
+            >
+              <p className='review'>
+                Ak hladate majstra, uz ho nehladajte, nasli ste ho! Vyborna
+                komunikacia, otvorenost, slusnost, zanietenost pre vas projekt,
+                profesionalna praca, skvely networking na dalsich majstrov s
+                podobnym slusnym a odbornym pristupom.
+              </p>
+            </a>
           </div>
           <div className='review-single'>
-            <img src='/img/google-icon.webp' alt='' />
-            <h3 className='name'>Judita </h3>
-            <h6 className='from'>Dúbravka </h6>
+            <img
+              className='google-img'
+              src='/img/google-icon.webp'
+              alt='google-icon'
+            />
+            <h3 className='name'>S T</h3>
+            <div className='review-face-div'>
+              <img
+                className='review-face'
+                src='/img/STreview.webp'
+                alt='review-icon'
+              />
+            </div>
+
+            {/* <h6 className='from'>Trnávka </h6> */}
             <p className='stars'>⭐️⭐️⭐️⭐️⭐️</p>
-            <p className='review'>
-              Včasná obhliadka, potom precízna pokládka parkiet. Páni si dali
-              záležať.{' '}
-            </p>
+            <a
+              className='review-link'
+              href='https://www.google.com/maps/contrib/106003207452819479018/place/ChIJiUYfNhNyjyMRCenVnC9uwc8/@48.1357804,16.4567374,9z/data=!4m6!1m5!8m4!1e1!2s106003207452819479018!3m1!1e1?hl=sk'
+              target='_blank'
+            >
+              <p className='review'>
+                Hľadal som odborníkov na rôzne montážne práce v rodinnom dome.
+                Dostal som číslo na pána ktorý sa mi hneď ozval. Dohodli sme sa
+                na cene a termíne namontovania zárubní a dverí. Profesionálne
+                odvedená práca, super komunikácia... <span>na recenziu</span>
+              </p>
+            </a>
           </div>
           <div className='review-single'>
-            <img src='/img/google-icon.webp' alt='' />
-            <h3 className='name'>Miro </h3>
-            <h6 className='from'>Petržalka </h6>
+            <img
+              className='google-img'
+              src='/img/google-icon.webp'
+              alt='google-icon'
+            />
+            <h3 className='name'>Katarína Hercegová</h3>
+            <div className='review-face-div'>
+              <img
+                className='review-face'
+                src='/img/KatarinaHercegova.webp'
+                alt='review-icon'
+              />
+            </div>
+
+            {/* <h6 className='from'>Trnávka </h6> */}
             <p className='stars'>⭐️⭐️⭐️⭐️⭐️</p>
-            <p className='review'>
-              Potreboval som osadiť nové dvere a dostal som tento kontakt.
-              Spokojnosť po všetkých stránkach.{' '}
-            </p>
+            <a
+              className='review-link'
+              href='https://www.google.com/maps/contrib/101549139245048146818/reviews/@48.1357804,17.1159171,17z/data=!3m1!4b1!4m3!8m2!3m1!1e1?hl=sk'
+              target='_blank'
+            >
+              <p className='review'>
+                P. Dovala pracuje spolahlivo a rychlo, velmi oceňujeme aj
+                myslenie o krok dopredu, ako aj spolupodielanie sa na napade a
+                najvhodnejsom rieseni. Je kreativny a zodpovedny, za nas 5
+                hviezdiciek 😊
+              </p>
+            </a>
           </div>
         </div>
       </section>

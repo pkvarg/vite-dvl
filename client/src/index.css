@@ -244,7 +244,7 @@ a.call-us-body:hover {
 .review-single {
   position: relative;
   background-color: #fff;
-  height: 400px;
+  height: 500px;
   width: 350px;
   box-shadow: 14px 11px 19px 2px rgba(0, 0, 0, 0.79);
   -webkit-box-shadow: 14px 11px 19px 2px rgba(0, 0, 0, 0.79);
@@ -255,13 +255,31 @@ a.call-us-body:hover {
   transform: scale(1.025);
 }
 
-.review-single img {
+img.google-img {
   position: absolute;
   border-radius: 50%;
   top: -53px;
   left: 36%;
 }
 
+.review-face-div {
+  display: flex;
+  justify-content: center;
+}
+
+img.review-face {
+  width: 15%;
+}
+
+.review-link {
+  text-decoration: none;
+
+  color: #000000;
+}
+
+.review-link:hover {
+  color: #000000;
+}
 .review-single h3 {
   padding-top: 60px;
   text-align: center;
@@ -276,8 +294,17 @@ a.call-us-body:hover {
   text-align: center;
 }
 
+p.stars {
+  margin-top: 20px;
+}
+
 p.review {
   padding: 20px;
+}
+
+p.review span {
+  text-decoration: underline;
+  color: blue;
 }
 
 .second-three-services {
@@ -836,7 +863,7 @@ i.bi.bi-r-square {
 
   .review-single {
     width: 65%;
-    height: 300px;
+    height: 450px;
     margin-bottom: 40px;
   }
 
