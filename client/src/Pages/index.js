@@ -3,5 +3,6 @@ import Gdpr from './Gdpr'
 import TradeRules from './TradeRules'
 import ErrorPage from './ErrorPage'
 import Counter from './Counter'
+import Admin from './Admin'
 
-export { Page, Gdpr, TradeRules, ErrorPage, Counter }
+export { Admin, Page, Gdpr, TradeRules, ErrorPage, Counter }
