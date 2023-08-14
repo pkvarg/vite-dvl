@@ -7,6 +7,7 @@ import { toast } from 'react-hot-toast'
 import { useStateContext } from '../context/StateContext'
 import getDate from '../date'
 import useDrivePicker from 'react-google-drive-picker'
+import { AdminDashboard } from '../components'
 
 const Admin = () => {
   const navigate = useNavigate()
@@ -23,7 +24,7 @@ const Admin = () => {
         result.user.email === import.meta.env.VITE_AUTH_EMAIL_1
       ) {
         setIsAuth(xauth)
-        toast.success('Logged in.')
+        toast.success('Prihlásený.')
       } else {
         navigate('/')
         toast.error('Unauthorised user.')
@@ -34,7 +35,7 @@ const Admin = () => {
   const signUserOut = () => {
     signOut(auth).then(() => {
       setIsAuth('non')
-      toast.success('Logged out.')
+      toast.success('Odhlásený')
       //navigate('/')
     })
   }
@@ -80,9 +81,11 @@ const Admin = () => {
             {displayYear}
           </h2>
           {isAuth === xauth ? (
-            <button onClick={signUserOut} className='admin-button'>
-              Odhlásiť sa
-            </button>
+            <>
+              <button onClick={signUserOut} className='admin-button'>
+                Odhlásiť sa
+              </button>
+            </>
           ) : (
             <button onClick={signInWithGoogle} className='admin-button'>
               Prihlásenie cez Google
@@ -95,17 +98,20 @@ const Admin = () => {
               <div className='greeting'>
                 <h1>Vitaj Tomáš</h1>
               </div>
+              <img
+                className='google-drive'
+                src='/img/Google-Drive.webp'
+                alt='Google-Drive'
+                onClick={() => handleOpenPicker()}
+              />
             </>
           )}
         </div>
         {isAuth === xauth && (
           <div>
-            <img
-              className='google-drive'
-              src='/img/Google-Drive.webp'
-              alt='Google-Drive'
-              onClick={() => handleOpenPicker()}
-            />
+            <>
+              <AdminDashboard handleOpenPicker={handleOpenPicker} />
+            </>
           </div>
         )}
       </div>
