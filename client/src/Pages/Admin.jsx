@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-hot-toast'
 import { useStateContext } from '../context/StateContext'
 import getDate from '../date'
-import { gapi } from 'gapi-script'
+import useDrivePicker from 'react-google-drive-picker'
 
 const Admin = () => {
   const navigate = useNavigate()
@@ -48,9 +48,27 @@ const Admin = () => {
     setDisplayYear(display.year)
   }, [])
 
-  // useEffect(() => {
+  const [openPicker, data, authResponse] = useDrivePicker()
 
-  // }, [])
+  const handleOpenPicker = () => {
+    openPicker({
+      clientId: import.meta.env.VITE_GOOGLE_DRIVE_CLIENT_ID,
+      developerKey: import.meta.env.VITE_GOOGLE_DRIVE_API_KEY,
+      viewId: 'DOCS',
+      showUploadView: true,
+      showUploadFolders: true,
+      supportDrives: true,
+      multiselect: true,
+      setOrigin: 'http://localhost:5173',
+      token: import.meta.env.VITE_GOOGLE_DRIVE_API_ACCESS_TOKEN,
+    })
+  }
+
+  // useEffect(() => {
+  //   if (data) {
+  //     data.docs.map((i) => console.log(i))
+  //   }
+  // }, [data])
 
   return (
     <>
@@ -61,6 +79,15 @@ const Admin = () => {
             Dnes je {displayDay} {displayDayOfMonth}. {displayMonth}{' '}
             {displayYear}
           </h2>
+          {isAuth === xauth ? (
+            <button onClick={signUserOut} className='admin-button'>
+              Odhlásiť sa
+            </button>
+          ) : (
+            <button onClick={signInWithGoogle} className='admin-button'>
+              Prihlásenie cez Google
+            </button>
+          )}
         </div>
         <div className='admin-1'>
           {isAuth === xauth && (
@@ -71,14 +98,15 @@ const Admin = () => {
             </>
           )}
         </div>
-        {isAuth === xauth ? (
-          <button onClick={signUserOut} className='admin-button'>
-            Log out
-          </button>
-        ) : (
-          <button onClick={signInWithGoogle} className='admin-button'>
-            Log in with Google
-          </button>
+        {isAuth === xauth && (
+          <div>
+            <img
+              className='google-drive'
+              src='/img/Google-Drive.webp'
+              alt='Google-Drive'
+              onClick={() => handleOpenPicker()}
+            />
+          </div>
         )}
       </div>
     </>

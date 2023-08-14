@@ -761,18 +761,18 @@ i.bi.bi-r-square {
 }
 
 .admin-button {
-  background-color: #d57703;
-  color: #f0eceb;
+  background-color: #f4eee7;
+  color: #000000;
   font-size: 20px;
   border-radius: 25px;
   padding: 5px 15px 5px 15px;
   margin-left: 35px;
-  border: 1px solid white;
+  border: 1px solid #000000;
 }
 
 .admin-button:hover {
-  border: 1px solid black;
-  text-decoration: underline;
+  border: 1px solid #fe9400;
+  color: #d57703;
 }
 
 .greeting {
@@ -784,6 +784,16 @@ i.bi.bi-r-square {
 
 .greeting h1 {
   font-size: 45px;
+}
+
+.google-drive {
+  height: 7%;
+  width: 7%;
+  border-radius: 25px;
+}
+
+.google-drive:hover {
+  border: 1px solid #000000;
 }
 
 /* MEDIA QUERIES MEDIA QUERIES MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES MEDIA QUERIES MEDIA QUERIES MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIESMEDIA QUERIES MEDIA QUERIES MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIESMEDIA QUERIES MEDIA QUERIES MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIESMEDIA QUERIES MEDIA QUERIES MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES */
@@ -1236,5 +1246,10 @@ i.bi.bi-r-square {
 
   .admin-1 {
     padding: 0px;
+  }
+
+  .google-drive {
+    height: 40%;
+    width: 40%;
   }
 }
