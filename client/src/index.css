@@ -732,6 +732,7 @@ i.bi.bi-r-square {
   color: #f4eee7;
   height: 100vh;
   padding: 0 30px;
+  height: 100vh;
 }
 
 .first {
@@ -790,10 +791,17 @@ i.bi.bi-r-square {
   height: 50px;
   width: 125px;
   border-radius: 25px;
+  border: 1px solid #000000;
 }
 
 .google-drive:hover {
-  border: 1px solid #000000;
+  border: 3px solid #d57703;
+}
+
+.admin-buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
 }
 
 .dashboard {
@@ -810,6 +818,87 @@ i.bi.bi-r-square {
   display: flex;
   flex-direction: row;
   justify-content: end;
+}
+
+.admin-auth {
+  position: relative;
+}
+
+.admin-modal {
+  background-color: #0f0e0ec9;
+  padding: 30px 60px;
+  z-index: 999;
+  outline: none;
+  position: absolute;
+  left: 40%;
+  top: -180%;
+  border-radius: 25px;
+}
+
+.admin-modal-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.admin-modal-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 25px;
+}
+
+.admin-modal-form p {
+  font-size: 25px;
+}
+
+.admin-modal-top {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+  position: relative;
+}
+
+.admin-modal-form-close {
+  position: absolute;
+  right: -90px;
+  top: -25px;
+  cursor: pointer;
+  border: 1px solid #ffffff;
+  border-radius: 50px;
+  padding: 0 10px;
+}
+
+.admin-modal-form button {
+  background-color: #f4eee7;
+  color: #000000;
+  border: 2px solid #ffffff;
+  padding: 0 75px;
+  border-radius: 25px;
+}
+
+.admin-modal-form button:hover {
+  color: #d57703;
+  border: 2px solid #d57703;
+}
+
+.admin-modal-form textarea {
+  height: 200px;
+}
+
+.admin-modal-form input,
+.admin-modal-form textarea {
+  border-radius: 25px;
+  outline: none;
+  border: none;
+  padding: 0 20px;
+}
+
+.admin-modal-form input.form-date {
+  width: 110%;
 }
 
 /* MEDIA QUERIES MEDIA QUERIES MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES MEDIA QUERIES MEDIA QUERIES MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIESMEDIA QUERIES MEDIA QUERIES MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIESMEDIA QUERIES MEDIA QUERIES MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIESMEDIA QUERIES MEDIA QUERIES MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES */
@@ -1268,5 +1357,30 @@ i.bi.bi-r-square {
     height: 80px;
     width: 155px;
     margin-bottom: 25px;
+  }
+
+  .admin-modal {
+    padding: 30px 33px;
+    left: 0;
+    top: -200px;
+  }
+
+  .admin-modal-form-close {
+    right: -65px;
+  }
+
+  .admin-buttons {
+    flex-direction: column;
+    justify-content: center;
+    padding-bottom: 15px;
+  }
+
+  .admin-button,
+  .google-drive {
+    margin: 0;
+  }
+
+  .google-drive {
+    margin-left: 25%;
   }
 }

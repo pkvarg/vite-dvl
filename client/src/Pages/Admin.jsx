@@ -7,7 +7,7 @@ import { toast } from 'react-hot-toast'
 import { useStateContext } from '../context/StateContext'
 import getDate from '../date'
 import useDrivePicker from 'react-google-drive-picker'
-import { AdminDashboard } from '../components'
+import { AdminCreate, AdminDashboard } from '../components'
 
 const Admin = () => {
   const navigate = useNavigate()
@@ -65,6 +65,8 @@ const Admin = () => {
     })
   }
 
+  const [showCreateModal, setShowCreateModal] = useState(false)
+
   // useEffect(() => {
   //   if (data) {
   //     data.docs.map((i) => console.log(i))
@@ -87,9 +89,11 @@ const Admin = () => {
               </button>
             </>
           ) : (
-            <button onClick={signInWithGoogle} className='admin-button'>
-              Prihlásenie cez Google
-            </button>
+            <>
+              <button onClick={signInWithGoogle} className='admin-button'>
+                Prihlásenie cez Google
+              </button>
+            </>
           )}
         </div>
         <div className='admin-1'>
@@ -98,19 +102,31 @@ const Admin = () => {
               <div className='greeting'>
                 <h1>Vitaj Tomáš</h1>
               </div>
-              <img
-                className='google-drive'
-                src='/img/Google-Drive.webp'
-                alt='Google-Drive'
-                onClick={() => handleOpenPicker()}
-              />
+              <div className='admin-buttons'>
+                <button
+                  onClick={() => setShowCreateModal(true)}
+                  className='admin-button'
+                >
+                  Vytvoriť zákazku
+                </button>
+                <img
+                  className='google-drive'
+                  src='/img/Google-Drive.webp'
+                  alt='Google-Drive'
+                  onClick={() => handleOpenPicker()}
+                />
+              </div>
             </>
           )}
         </div>
         {isAuth === xauth && (
-          <div>
+          <div className='admin-auth'>
             <>
-              <AdminDashboard handleOpenPicker={handleOpenPicker} />
+              <AdminDashboard />
+              <AdminCreate
+                showCreateModal={showCreateModal}
+                setShowCreateModal={setShowCreateModal}
+              />
             </>
           </div>
         )}

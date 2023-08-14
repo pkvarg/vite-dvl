@@ -4,6 +4,8 @@ import SixSections from './SixSections'
 import Message from './Message'
 import ScrollToTop from './ScrollToTop'
 import AdminDashboard from './AdminDashboard'
+import AdminCreate from './AdminCreate'
+import AdminEdit from './AdminEdit'
 
 export {
   ContactForm,
@@ -12,4 +14,6 @@ export {
   Message,
   ScrollToTop,
   AdminDashboard,
+  AdminCreate,
+  AdminEdit,
 }
