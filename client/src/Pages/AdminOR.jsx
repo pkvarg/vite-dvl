@@ -49,67 +49,30 @@ const Admin = () => {
     setDisplayYear(display.year)
   }, [])
 
-  const [showCreateModal, setShowCreateModal] = useState(false)
-
-  const [openPicker] = useDrivePicker()
+  const [openPicker, data, authResponse] = useDrivePicker()
 
   const handleOpenPicker = () => {
-    gapi.load('client:auth2', () => {
-      gapi.client
-        .init({
-          apiKey: import.meta.env.VITE_NEW_API_KEY,
-        })
-        .then(() => {
-          let tokenInfo = gapi.auth.getToken()
-          const pickerConfig = {
-            clientId: import.meta.env.VITE_NEW_OAUTH_CLIENT_ID,
-            developerKey: import.meta.env.VITE_NEW_API_KEY,
-            viewId: 'DOCS',
-            viewMimeTypes: 'image/jpeg,image/png,image/gif',
-            // token: tokenInfo ? tokenInfo.access_token : null,
-            token: import.meta.env.VITE_NEW_TOKEN,
-            showUploadView: true,
-            showUploadFolders: true,
-            supportDrives: true,
-            multiselect: true,
-            setOrigin: 'http://localhost:5173',
-
-            callbackFunction: (data) => {
-              const elements = Array.from(
-                document.getElementsByClassName('picker-dialog')
-              )
-              for (let i = 0; i < elements.length; i++) {
-                elements[i].style.zIndex = '2000'
-              }
-              if (data.action === 'picked') {
-                //Add your desired workflow when choosing a file from the Google Picker popup
-                //In this below code, I'm attempting to get the file's information.
-                if (!tokenInfo) {
-                  tokenInfo = gapi.auth.getToken()
-                }
-                const fetchOptions = {
-                  headers: {
-                    Authorization: `Bearer ${import.meta.env.VITE_NEW_TOKEN}`,
-                  },
-                }
-                const driveFileUrl = 'https://www.googleapis.com/drive/v3/files'
-                data.docs.map(async (item) => {
-                  const response = await fetch(
-                    `${driveFileUrl}/${item.id}?alt=media`,
-                    fetchOptions
-                  )
-                })
-              }
-            },
-          }
-          openPicker(pickerConfig)
-        })
+    openPicker({
+      clientId: import.meta.env.VITE_GOOGLE_DRIVE_CLIENT_ID,
+      developerKey: import.meta.env.VITE_GOOGLE_DRIVE_API_KEY,
+      viewId: 'DOCS',
+      showUploadView: true,
+      showUploadFolders: true,
+      supportDrives: true,
+      multiselect: true,
+      // setOrigin: 'https://kvalitnamontaz.sk',
+      setOrigin: 'http://localhost:5173',
+      token: import.meta.env.VITE_GOOGLE_DRIVE_API_ACCESS_TOKEN,
     })
   }
 
-  // const handleOpenPicker = () => {
-  //   console.log('OK')
-  // }
+  const [showCreateModal, setShowCreateModal] = useState(false)
+
+  useEffect(() => {
+    if (data) {
+      data.docs.map((i) => console.log(i))
+    }
+  }, [data])
 
   return (
     <>
