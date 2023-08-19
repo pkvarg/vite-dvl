@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { auth, provider, xauth } from './../App'
+import { auth, provider, xauth, db } from './../App'
 import { signInWithPopup } from 'firebase/auth'
 import { signOut } from 'firebase/auth'
 import { useNavigate } from 'react-router-dom'
@@ -8,6 +8,13 @@ import { useStateContext } from '../context/StateContext'
 import getDate from '../date'
 import useDrivePicker from 'react-google-drive-picker'
 import { AdminCreate, AdminDashboard } from '../components'
+import {
+  getDocs,
+  collection,
+  updateDoc,
+  deleteDoc,
+  doc,
+} from 'firebase/firestore'
 
 const Admin = () => {
   const navigate = useNavigate()
@@ -16,6 +23,7 @@ const Admin = () => {
   const [displayDayOfMonth, setDisplayDayOfMonth] = useState()
   const [displayMonth, setDisplayMonth] = useState()
   const [displayYear, setDisplayYear] = useState()
+  const ordersCollectionRef = collection(db, 'orders')
 
   const signInWithGoogle = () => {
     signInWithPopup(auth, provider).then((result) => {
@@ -66,13 +74,14 @@ const Admin = () => {
             developerKey: import.meta.env.VITE_NEW_API_KEY,
             viewId: 'DOCS',
             viewMimeTypes: 'image/jpeg,image/png,image/gif',
-            // token: tokenInfo ? tokenInfo.access_token : null,
-            token: import.meta.env.VITE_NEW_TOKEN,
+            token: tokenInfo ? tokenInfo.access_token : null,
+            // token: import.meta.env.VITE_NEW_TOKEN,
             showUploadView: true,
             showUploadFolders: true,
             supportDrives: true,
             multiselect: true,
-            setOrigin: 'http://localhost:5173',
+            //setOrigin: 'http://localhost:5173',
+            setOrigin: 'https://kvalitnamontaz.sk',
 
             callbackFunction: (data) => {
               const elements = Array.from(
@@ -107,9 +116,10 @@ const Admin = () => {
     })
   }
 
-  // const handleOpenPicker = () => {
-  //   console.log('OK')
-  // }
+  const getOrders = async () => {
+    const data = await getDocs(ordersCollectionRef)
+    console.log(data)
+  }
 
   return (
     <>
@@ -147,6 +157,9 @@ const Admin = () => {
                 >
                   Vytvoriť zákazku
                 </button>
+                <button onClick={getOrders} className='admin-button'>
+                  Zobraziť Zákazky
+                </button>
                 <img
                   className='google-drive'
                   src='/img/Google-Drive.webp'
@@ -164,6 +177,8 @@ const Admin = () => {
               <AdminCreate
                 showCreateModal={showCreateModal}
                 setShowCreateModal={setShowCreateModal}
+                formTitle='Vytvoriť zákazku'
+                formAction='Vytvoriť'
               />
             </>
           </div>

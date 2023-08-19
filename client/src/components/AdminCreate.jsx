@@ -1,7 +1,23 @@
 import React, { useState } from 'react'
 import { toast } from 'react-hot-toast'
+import { db } from '../App'
+import { v4 as uuidv4 } from 'uuid'
 
-const AdminCreate = ({ showCreateModal, setShowCreateModal }) => {
+import {
+  addDoc,
+  getDocs,
+  collection,
+  updateDoc,
+  deleteDoc,
+  doc,
+} from 'firebase/firestore'
+
+const AdminCreate = ({
+  showCreateModal,
+  setShowCreateModal,
+  formTitle,
+  formAction,
+}) => {
   const [formData, setFormData] = useState({
     title: '',
     name: '',
@@ -19,20 +35,47 @@ const AdminCreate = ({ showCreateModal, setShowCreateModal }) => {
     }))
   }
 
+  const ordersCollectionRef = collection(db, 'orders')
+  const uniqueId = uuidv4()
+  const generateUniqueId = () => {
+    return `${Math.random().toString(36).substring(2)}`
+  }
+
+  const createOrder = (formData) => {
+    const { address, name, date, description, phone, title } = formData
+    const id = generateUniqueId()
+    try {
+      addDoc(ordersCollectionRef, {
+        address,
+        name,
+        date,
+        description,
+        phone,
+        title,
+        id,
+      })
+    } catch (error) {
+      console.log(error)
+      toast.error(error)
+    }
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault()
     // Do something with formData (e.g., send to server)
+    createOrder(formData)
     setShowCreateModal(false)
-    setFormData({
-      title: '',
-      name: '',
-      address: '',
-      phone: '',
-      date: new Date(),
-      description: '',
-    }) // Reset form data to empty values    toast.success('OK')
+    // setFormData({
+    //   title: '',
+    //   name: '',
+    //   address: '',
+    //   phone: '',
+    //   date: new Date(),
+    //   description: '',
+    // }) // Reset form data to empty values    toast.success('OK')
     toast.success('OK')
   }
+
   return (
     <div>
       {showCreateModal && (
@@ -40,7 +83,7 @@ const AdminCreate = ({ showCreateModal, setShowCreateModal }) => {
           <div className='admin-modal-content'>
             <form onSubmit={handleSubmit} className='admin-modal-form'>
               <div className='admin-modal-top'>
-                <p>Vytvoriť zákazku</p>
+                <p>{formTitle}</p>
                 <p
                   className='admin-modal-form-close'
                   onClick={() => setShowCreateModal(false)}
@@ -94,7 +137,7 @@ const AdminCreate = ({ showCreateModal, setShowCreateModal }) => {
                 />
               </label>
 
-              <button type='submit'>Vytvoriť</button>
+              <button type='submit'>{formAction}</button>
             </form>
           </div>
         </div>
