@@ -14,6 +14,7 @@ import {
   updateDoc,
   deleteDoc,
   doc,
+  getDoc,
 } from 'firebase/firestore'
 import './../admin.css'
 
@@ -24,7 +25,6 @@ const Admin = () => {
   const [displayDayOfMonth, setDisplayDayOfMonth] = useState()
   const [displayMonth, setDisplayMonth] = useState()
   const [displayYear, setDisplayYear] = useState()
-  const ordersCollectionRef = collection(db, 'orders')
   const [displayOrders, setDisplayOrders] = useState([])
   const [formTitle, setFormTitle] = useState('')
   const [formAction, setFormAction] = useState('')
@@ -35,6 +35,8 @@ const Admin = () => {
   const [date, setDate] = useState()
   const [description, setDescription] = useState('')
   const [singleOrder, setSingleOrder] = useState()
+
+  const ordersCollectionRef = collection(db, 'orders')
 
   const signInWithGoogle = () => {
     signInWithPopup(auth, provider).then((result) => {
@@ -138,6 +140,7 @@ const Admin = () => {
       ordersData.push(order._document.data.value.mapValue.fields)
     })
     setDisplayOrders(ordersData)
+    console.log('oA', data)
   }
 
   const getSingleOrder = (orderId) => {
@@ -146,6 +149,24 @@ const Admin = () => {
 
   const editOrder = async (orderId) => {
     console.log('editInModal', orderId)
+    const docRef = doc(db, 'orders', orderId)
+
+    const docSnap = await getDocs(ordersCollectionRef)
+
+    //console.log(docSnap.docs.map((doc) => console.log(doc.ref.id)))
+    docSnap.docs.map((doc) => console.log(doc.ref.id))
+
+    //   updateDoc(docRef, {
+    //     title,
+    //     name,
+    //     address,
+    //     description,
+    //     phone,
+    //   })
+    //   toast.success('Updated')
+    // } catch (error) {
+    //   toast.error(error)
+    // }
   }
   const deleteOrder = async (orderId) => {
     console.log('deleteInModal', orderId)

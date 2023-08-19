@@ -22,12 +22,10 @@ const AdminModal = ({
   setTitle,
   name,
   setName,
-
   address,
   setAddress,
   phone,
   setPhone,
-
   date,
   setDate,
   description,
@@ -60,17 +58,7 @@ const AdminModal = ({
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    // Do something with formData (e.g., send to server)
-    //formHandler(formData)
-    //  setShowCreateModal(false)
-    // setFormData({
-    //   title: '',
-    //   name: '',
-    //   address: '',
-    //   phone: '',
-    //   date: new Date(),
-    //   description: '',
-    // }) // Reset form data to empty values    toast.success('OK')
+    setShowModal(false)
     toast.success('OK')
   }
 
@@ -125,6 +113,7 @@ const AdminModal = ({
                   onChange={(e) => setPhone(e.target.value)}
                 />
               </label>
+              {date}
 
               <label>
                 <textarea
