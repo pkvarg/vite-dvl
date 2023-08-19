@@ -13,29 +13,26 @@ import {
   doc,
 } from 'firebase/firestore'
 
-const AdminCreate = ({
-  showCreateModal,
-  setShowCreateModal,
+const AdminModal = ({
+  showModal,
+  setShowModal,
   formTitle,
   formAction,
+  title,
+  setTitle,
+  name,
+  setName,
+
+  address,
+  setAddress,
+  phone,
+  setPhone,
+
+  date,
+  setDate,
+  description,
+  setDescription,
 }) => {
-  const [formData, setFormData] = useState({
-    title: '',
-    name: '',
-    address: '',
-    phone: '',
-    date: new Date(),
-    description: '',
-  })
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }))
-  }
-
   const ordersCollectionRef = collection(db, 'orders')
   const uniqueId = uuidv4()
   const generateUniqueId = () => {
@@ -64,8 +61,8 @@ const AdminCreate = ({
   const handleSubmit = (e) => {
     e.preventDefault()
     // Do something with formData (e.g., send to server)
-    createOrder(formData)
-    setShowCreateModal(false)
+    //formHandler(formData)
+    //  setShowCreateModal(false)
     // setFormData({
     //   title: '',
     //   name: '',
@@ -79,7 +76,7 @@ const AdminCreate = ({
 
   return (
     <div>
-      {showCreateModal && (
+      {showModal && (
         <div className='admin-modal'>
           <div className='admin-modal-content'>
             <form onSubmit={handleSubmit} className='admin-modal-form'>
@@ -87,7 +84,7 @@ const AdminCreate = ({
                 <p>{formTitle}</p>
                 <p
                   className='admin-modal-form-close'
-                  onClick={() => setShowCreateModal(false)}
+                  onClick={() => setShowModal(false)}
                 >
                   X
                 </p>
@@ -97,8 +94,8 @@ const AdminCreate = ({
                   type='text'
                   placeholder='Názov'
                   name='title'
-                  value={formData.title}
-                  onChange={handleInputChange}
+                  value={title}
+                  onChange={(e) => setTitle(e.target.value)}
                 />
               </label>
               <label>
@@ -106,8 +103,8 @@ const AdminCreate = ({
                   type='text'
                   placeholder='Meno'
                   name='name'
-                  value={formData.name}
-                  onChange={handleInputChange}
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
                 />
               </label>
               <label>
@@ -115,8 +112,8 @@ const AdminCreate = ({
                   type='text'
                   placeholder='Adresa'
                   name='address'
-                  value={formData.address}
-                  onChange={handleInputChange}
+                  value={address}
+                  onChange={(e) => setAddress(e.target.value)}
                 />
               </label>
               <label>
@@ -124,8 +121,8 @@ const AdminCreate = ({
                   type='text'
                   placeholder='Telefón'
                   name='phone'
-                  value={formData.phone}
-                  onChange={handleInputChange}
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
                 />
               </label>
 
@@ -133,8 +130,8 @@ const AdminCreate = ({
                 <textarea
                   name='description'
                   placeholder='Popis'
-                  value={formData.description}
-                  onChange={handleInputChange}
+                  value={description}
+                  onChange={(e) => setDescription(e.target.value)}
                 />
               </label>
 
@@ -147,4 +144,4 @@ const AdminCreate = ({
   )
 }
 
-export default AdminCreate
+export default AdminModal

@@ -97,7 +97,7 @@ export default function getDate(date) {
   let dayName = getDayName(dayOfWeek)
   let monthName = getMonthName(month)
 
-  return { dayOfMonth, dayName, monthName, year }
+  return { dayOfMonth, dayName, monthName, month, year }
 }
 
 // const [isLoadingGoogleDriveApi, setIsLoadingGoogleDriveApi] = useState(false)

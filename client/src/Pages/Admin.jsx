@@ -7,7 +7,7 @@ import { toast } from 'react-hot-toast'
 import { useStateContext } from '../context/StateContext'
 import getDate from '../date'
 import useDrivePicker from 'react-google-drive-picker'
-import { AdminCreate, AdminDashboard } from '../components'
+import { AdminCreate, AdminDashboard, AdminModal } from '../components'
 import {
   getDocs,
   collection,
@@ -15,6 +15,7 @@ import {
   deleteDoc,
   doc,
 } from 'firebase/firestore'
+import './../admin.css'
 
 const Admin = () => {
   const navigate = useNavigate()
@@ -24,6 +25,16 @@ const Admin = () => {
   const [displayMonth, setDisplayMonth] = useState()
   const [displayYear, setDisplayYear] = useState()
   const ordersCollectionRef = collection(db, 'orders')
+  const [displayOrders, setDisplayOrders] = useState([])
+  const [formTitle, setFormTitle] = useState('')
+  const [formAction, setFormAction] = useState('')
+  const [title, setTitle] = useState('')
+  const [name, setName] = useState('')
+  const [address, setAddress] = useState('')
+  const [phone, setPhone] = useState('')
+  const [date, setDate] = useState()
+  const [description, setDescription] = useState('')
+  const [singleOrder, setSingleOrder] = useState()
 
   const signInWithGoogle = () => {
     signInWithPopup(auth, provider).then((result) => {
@@ -58,6 +69,7 @@ const Admin = () => {
   }, [])
 
   const [showCreateModal, setShowCreateModal] = useState(false)
+  const [showModal, setShowModal] = useState(false)
 
   const [openPicker] = useDrivePicker()
 
@@ -116,9 +128,48 @@ const Admin = () => {
     })
   }
 
+  const ordersArr = []
+  const ordersData = []
+
   const getOrders = async () => {
     const data = await getDocs(ordersCollectionRef)
-    console.log(data)
+    data.docs.map((doc) => ordersArr.push(doc))
+    ordersArr.map((order) => {
+      ordersData.push(order._document.data.value.mapValue.fields)
+    })
+    setDisplayOrders(ordersData)
+  }
+
+  const getSingleOrder = (orderId) => {
+    return displayOrders.find((obj) => obj.id.stringValue === orderId)
+  }
+
+  const editOrder = async (orderId) => {
+    console.log('editInModal', orderId)
+  }
+  const deleteOrder = async (orderId) => {
+    console.log('deleteInModal', orderId)
+  }
+
+  const actionHandler = (actionType, orderId) => {
+    if (actionType === 'edit') {
+      editOrder(orderId)
+      const data = getSingleOrder(orderId)
+      setTitle(data.title.stringValue)
+      setName(data.name.stringValue)
+      setAddress(data.address.stringValue)
+      setDate(data.date.timestampValue)
+      setDescription(data.description.stringValue)
+      setPhone(data.phone.stringValue)
+      setShowModal(true)
+      setFormTitle('Upraviť zákazku')
+      setFormAction('Upraviť')
+    } else {
+      deleteOrder(orderId)
+      setShowModal(true)
+      setFormTitle('Vymazať zákazku')
+      setFormAction('Vymazať')
+    }
   }
 
   return (
@@ -147,9 +198,9 @@ const Admin = () => {
         <div className='admin-1'>
           {isAuth === xauth && (
             <>
-              <div className='greeting'>
+              {/* <div className='greeting'>
                 <h1>Vitaj Tomáš</h1>
-              </div>
+              </div> */}
               <div className='admin-buttons'>
                 <button
                   onClick={() => setShowCreateModal(true)}
@@ -173,13 +224,44 @@ const Admin = () => {
         {isAuth === xauth && (
           <div className='admin-auth'>
             <>
-              <AdminDashboard />
-              <AdminCreate
+              {/* <AdminCreate
                 showCreateModal={showCreateModal}
                 setShowCreateModal={setShowCreateModal}
                 formTitle='Vytvoriť zákazku'
                 formAction='Vytvoriť'
+              /> */}
+              <AdminModal
+                showModal={showModal}
+                setShowModal={setShowModal}
+                formTitle={formTitle}
+                formAction={formAction}
+                title={title}
+                setTitle={setTitle}
+                name={name}
+                setName={setName}
+                address={address}
+                setAddress={setAddress}
+                date={date}
+                setDate={setDate}
+                phone={phone}
+                setPhone={setPhone}
+                description={description}
+                setDescription={setDescription}
               />
+              {displayOrders.map((order, i) => (
+                <AdminDashboard
+                  key={order.id.stringValue}
+                  title={order.title.stringValue}
+                  name={order.name.stringValue}
+                  address={order.address.stringValue}
+                  date={order.date.timestampValue}
+                  phone={order.phone.stringValue}
+                  description={order.description.stringValue}
+                  orderIndex={i + 1}
+                  id={order.id.stringValue}
+                  actionHandler={actionHandler}
+                />
+              ))}
             </>
           </div>
         )}
