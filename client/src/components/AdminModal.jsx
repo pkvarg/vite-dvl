@@ -30,6 +30,8 @@ const AdminModal = ({
   setDate,
   description,
   setDescription,
+  actionType,
+  actionHandler,
 }) => {
   const ordersCollectionRef = collection(db, 'orders')
   const uniqueId = uuidv4()
@@ -37,28 +39,32 @@ const AdminModal = ({
     return `${Math.random().toString(36).substring(2)}`
   }
 
-  const createOrder = (formData) => {
-    const { address, name, date, description, phone, title } = formData
-    const id = generateUniqueId()
-    try {
-      addDoc(ordersCollectionRef, {
-        address,
-        name,
-        date,
-        description,
-        phone,
-        title,
-        id,
-      })
-    } catch (error) {
-      console.log(error)
-      toast.error(error)
-    }
-  }
+  // const createOrder = (formData) => {
+  //   const { address, name, date, description, phone, title } = formData
+  //   const id = generateUniqueId()
+  //   try {
+  //     addDoc(ordersCollectionRef, {
+  //       address,
+  //       name,
+  //       date,
+  //       description,
+  //       phone,
+  //       title,
+  //       id,
+  //     })
+  //   } catch (error) {
+  //     console.log(error)
+  //     toast.error(error)
+  //   }
+  // }
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    setShowModal(false)
+    console.log(actionType)
+    if (actionType === 'create') {
+      actionHandler()
+    }
+    //setShowModal(false)
     toast.success('OK')
   }
 

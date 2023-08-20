@@ -3,6 +3,7 @@ import { toast } from 'react-hot-toast'
 import { db } from '../App'
 import { v4 as uuidv4 } from 'uuid'
 import './../admin.css'
+import axios from 'axios'
 
 import {
   addDoc,
@@ -42,19 +43,28 @@ const AdminCreate = ({
     return `${Math.random().toString(36).substring(2)}`
   }
 
-  const createOrder = (formData) => {
+  const createOrder = async (formData) => {
     const { address, name, date, description, phone, title } = formData
     const id = generateUniqueId()
     try {
-      addDoc(ordersCollectionRef, {
+      await axios.post('http://localhost:2000/dvl/orders', {
         address,
         name,
         date,
         description,
         phone,
         title,
-        id,
       })
+
+      // addDoc(ordersCollectionRef, {
+      //   address,
+      //   name,
+      //   date,
+      //   description,
+      //   phone,
+      //   title,
+      //   id,
+      // })
     } catch (error) {
       console.log(error)
       toast.error(error)

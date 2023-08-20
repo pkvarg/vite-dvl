@@ -8,6 +8,7 @@ import { useStateContext } from '../context/StateContext'
 import getDate from '../date'
 import useDrivePicker from 'react-google-drive-picker'
 import { AdminCreate, AdminDashboard, AdminModal } from '../components'
+import axios from 'axios'
 import {
   getDocs,
   collection,
@@ -35,6 +36,7 @@ const Admin = () => {
   const [date, setDate] = useState()
   const [description, setDescription] = useState('')
   const [singleOrder, setSingleOrder] = useState()
+  const [actionType, setActionType] = useState('')
 
   const ordersCollectionRef = collection(db, 'orders')
 
@@ -133,64 +135,111 @@ const Admin = () => {
   const ordersArr = []
   const ordersData = []
 
-  const getOrders = async () => {
-    const data = await getDocs(ordersCollectionRef)
-    data.docs.map((doc) => ordersArr.push(doc))
-    ordersArr.map((order) => {
-      ordersData.push(order._document.data.value.mapValue.fields)
-    })
-    setDisplayOrders(ordersData)
-    console.log('oA', data)
+  // const getOrders = async () => {
+  //   const data = await getDocs(ordersCollectionRef)
+  //   data.docs.map((doc) => ordersArr.push(doc))
+  //   ordersArr.map((order) => {
+  //     ordersData.push(order._document.data.value.mapValue.fields)
+  //   })
+  //   setDisplayOrders(ordersData)
+  //   console.log('oA', data)
+  // }
+
+  // const getSingleOrder = (orderId) => {
+  //   return displayOrders.find((obj) => obj.id.stringValue === orderId)
+  // }
+
+  const config = {
+    headers: {
+      'Content-Type': 'application/json',
+    },
   }
 
-  const getSingleOrder = (orderId) => {
-    return displayOrders.find((obj) => obj.id.stringValue === orderId)
-  }
+  const createOrder = async () => {
+    // `https://pictusweb.online/api/admin/dvl/orders`,
 
-  const editOrder = async (orderId) => {
-    console.log('editInModal', orderId)
-    const docRef = doc(db, 'orders', orderId)
-
-    const docSnap = await getDocs(ordersCollectionRef)
-
-    //console.log(docSnap.docs.map((doc) => console.log(doc.ref.id)))
-    docSnap.docs.map((doc) => console.log(doc.ref.id))
-
-    //   updateDoc(docRef, {
-    //     title,
-    //     name,
-    //     address,
-    //     description,
-    //     phone,
-    //   })
-    //   toast.success('Updated')
-    // } catch (error) {
-    //   toast.error(error)
-    // }
-  }
-  const deleteOrder = async (orderId) => {
-    console.log('deleteInModal', orderId)
-  }
-
-  const actionHandler = (actionType, orderId) => {
-    if (actionType === 'edit') {
-      editOrder(orderId)
-      const data = getSingleOrder(orderId)
-      setTitle(data.title.stringValue)
-      setName(data.name.stringValue)
-      setAddress(data.address.stringValue)
-      setDate(data.date.timestampValue)
-      setDescription(data.description.stringValue)
-      setPhone(data.phone.stringValue)
-      setShowModal(true)
-      setFormTitle('Upraviť zákazku')
-      setFormAction('Upraviť')
-    } else {
-      deleteOrder(orderId)
-      setShowModal(true)
-      setFormTitle('Vymazať zákazku')
-      setFormAction('Vymazať')
+    try {
+      const { data } = await axios.post(
+        'http://localhost:2000/api/admin/dvl/orders',
+        {
+          title,
+          name,
+          address,
+          description,
+          phone,
+        },
+        config
+      )
+      console.log(data)
+    } catch (error) {
+      console.log(error)
+      toast.error('error')
     }
+  }
+
+  // const editOrder = async (orderId) => {
+  //   console.log('editInModal', orderId)
+  //   const docRef = doc(db, 'orders', orderId)
+
+  //   const docSnap = await getDocs(ordersCollectionRef)
+
+  //   //console.log(docSnap.docs.map((doc) => console.log(doc.ref.id)))
+  //   docSnap.docs.map((doc) => console.log(doc.ref.id))
+
+  //   //   updateDoc(docRef, {
+  //   //     title,
+  //   //     name,
+  //   //     address,
+  //   //     description,
+  //   //     phone,
+  //   //   })
+  //   //   toast.success('Updated')
+  //   // } catch (error) {
+  //   //   toast.error(error)
+  //   // }
+  // }
+  // const deleteOrder = async (orderId) => {
+  //   console.log('deleteInModal', orderId)
+  // }
+
+  const actionHandler = () => {
+    console.log(actionType)
+    if (actionType === 'create') {
+      createOrder()
+    }
+    console.log('aH')
+  }
+
+  const modalAction = (action) => {
+    if (action === 'create') {
+      setActionType(action)
+      setShowModal(true)
+      setFormTitle('Vytvoriť objednávku')
+      setFormAction('Vytvoriť')
+    }
+
+    // if (actionType === 'edit') {
+    //   editOrder(orderId)
+    //   const data = getSingleOrder(orderId)
+    //   setTitle(data.title.stringValue)
+    //   setName(data.name.stringValue)
+    //   setAddress(data.address.stringValue)
+    //   setDate(data.date.timestampValue)
+    //   setDescription(data.description.stringValue)
+    //   setPhone(data.phone.stringValue)
+    //   setShowModal(true)
+    //   setFormTitle('Upraviť zákazku')
+    //   setFormAction('Upraviť')
+    // } else if (actionType === 'create') {
+    //   setShowModal(true)
+    //   setFormTitle('Vytvoriť objednávku')
+    //   setFormAction('Vytvoriť')
+    // } else {
+    //   deleteOrder(orderId)
+    //   setShowModal(true)
+    //   setFormTitle('Vymazať zákazku')
+    //   setFormAction('Vymazať')
+    // }
   }
 
   return (
@@ -224,14 +273,14 @@ const Admin = () => {
               </div> */}
               <div className='admin-buttons'>
                 <button
-                  onClick={() => setShowCreateModal(true)}
+                  onClick={() => modalAction('create')}
                   className='admin-button'
                 >
                   Vytvoriť zákazku
                 </button>
-                <button onClick={getOrders} className='admin-button'>
+                {/* <button onClick={getOrders} className='admin-button'>
                   Zobraziť Zákazky
-                </button>
+                </button> */}
                 <img
                   className='google-drive'
                   src='/img/Google-Drive.webp'
@@ -268,6 +317,8 @@ const Admin = () => {
                 setPhone={setPhone}
                 description={description}
                 setDescription={setDescription}
+                actionType={actionType}
+                actionHandler={actionHandler}
               />
               {displayOrders.map((order, i) => (
                 <AdminDashboard
