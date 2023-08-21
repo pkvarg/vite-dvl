@@ -6,6 +6,7 @@ import ScrollToTop from './ScrollToTop'
 import AdminDashboard from './AdminDashboard'
 import AdminEdit from './AdminEdit'
 import AdminModal from './AdminModal'
+import AdminSearch from './AdminSearch'
 
 export {
   ContactForm,
@@ -16,4 +17,5 @@ export {
   AdminDashboard,
   AdminEdit,
   AdminModal,
+  AdminSearch,
 }

@@ -7,7 +7,7 @@ import { toast } from 'react-hot-toast'
 import { useStateContext } from '../context/StateContext'
 import getDate from '../date'
 import useDrivePicker from 'react-google-drive-picker'
-import { AdminDashboard, AdminModal } from '../components'
+import { AdminDashboard, AdminModal, AdminSearch } from '../components'
 import axios from 'axios'
 import './../admin.css'
 
@@ -30,6 +30,8 @@ const Admin = () => {
   const [singleOrder, setSingleOrder] = useState()
   const [actionType, setActionType] = useState('')
   const [currentOrderId, setCurrentOrderId] = useState()
+  const [showOderList, setShowOrderList] = useState(true)
+  const [showSearchResults, setShowSearchResults] = useState(false)
 
   const signInWithGoogle = () => {
     signInWithPopup(auth, provider).then((result) => {
@@ -157,18 +159,22 @@ const Admin = () => {
     }
   }
 
-  const getOrders = async () => {
-    try {
-      const { data } = await axios.get(
-        'http://localhost:2000/api/admin/dvl/orders',
-        config
-      )
-      setDisplayOrders(data)
-    } catch (error) {
-      console.log(error)
-      toast.error('error')
+  useEffect(() => {
+    const getOrders = async () => {
+      try {
+        const { data } = await axios.get(
+          'http://localhost:2000/api/admin/dvl/orders',
+          config
+        )
+
+        setDisplayOrders(data)
+      } catch (error) {
+        console.log(error)
+        toast.error('error')
+      }
     }
-  }
+    getOrders()
+  }, [])
 
   const getSingleOrder = async (orderId) => {
     try {
@@ -244,6 +250,23 @@ const Admin = () => {
     getSingleOrder(id)
   }
 
+  const [searchResults, setSearchResults] = useState([])
+
+  const handleSearch = async (query) => {
+    if (query !== '') {
+      try {
+        const response = await axios.get(
+          `http://localhost:2000/api/admin/dvl/orders/search/${query}`
+        )
+        setSearchResults(response.data)
+        setShowOrderList(false)
+        setShowSearchResults(true)
+      } catch (error) {
+        console.error('Error searching:', error)
+      }
+    }
+  }
+
   return (
     <>
       <div className='admin'>
@@ -280,14 +303,19 @@ const Admin = () => {
                 >
                   Vytvoriť zákazku
                 </button>
-                <button onClick={getOrders} className='admin-button'>
+                {/* <button onClick={getOrders} className='admin-button'>
                   Zobraziť Zákazky
-                </button>
+                </button> */}
                 <img
                   className='google-drive'
                   src='/img/Google-Drive.webp'
                   alt='Google-Drive'
                   onClick={() => handleOpenPicker()}
+                />
+                <AdminSearch
+                  handleSearch={handleSearch}
+                  setShowOrderList={setShowOrderList}
+                  setShowSearchResults={setShowSearchResults}
                 />
               </div>
             </>
@@ -318,21 +346,38 @@ const Admin = () => {
                 currentOrderId={currentOrderId}
                 editOrder={editOrder}
               />
-              {displayOrders.map((order, i) => (
-                <AdminDashboard
-                  key={order._id}
-                  title={order.title}
-                  name={order.name}
-                  address={order.address}
-                  date={order.createdAt}
-                  phone={order.phone}
-                  description={order.description}
-                  orderIndex={i + 1}
-                  id={order._id}
-                  edit={edit}
-                  deleteOrder={deleteOrder}
-                />
-              ))}
+              {showOderList &&
+                displayOrders.map((order, i) => (
+                  <AdminDashboard
+                    key={order._id}
+                    title={order.title}
+                    name={order.name}
+                    address={order.address}
+                    date={order.createdAt}
+                    phone={order.phone}
+                    description={order.description}
+                    orderIndex={i + 1}
+                    id={order._id}
+                    edit={edit}
+                    deleteOrder={deleteOrder}
+                  />
+                ))}
+              {showSearchResults &&
+                searchResults.map((order, i) => (
+                  <AdminDashboard
+                    key={order._id}
+                    title={order.title}
+                    name={order.name}
+                    address={order.address}
+                    date={order.createdAt}
+                    phone={order.phone}
+                    description={order.description}
+                    orderIndex={i + 1}
+                    id={order._id}
+                    edit={edit}
+                    deleteOrder={deleteOrder}
+                  />
+                ))}
             </>
           </div>
         )}
