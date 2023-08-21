@@ -27,7 +27,6 @@ const Admin = () => {
   const [phone, setPhone] = useState('')
   const [date, setDate] = useState()
   const [description, setDescription] = useState('')
-  const [singleOrder, setSingleOrder] = useState()
   const [actionType, setActionType] = useState('')
   const [currentOrderId, setCurrentOrderId] = useState()
   const [showOderList, setShowOrderList] = useState(true)
@@ -131,11 +130,10 @@ const Admin = () => {
   }
 
   const createOrder = async () => {
-    // `https://pictusweb.online/api/admin/dvl/orders`,
-
     try {
       const { data } = await axios.post(
-        'http://localhost:2000/api/admin/dvl/orders',
+        'https://pictusweb.online/api/admin/dvl/orders',
+        // 'http://localhost:2000/api/admin/dvl/orders',
         {
           title,
           name,
@@ -163,7 +161,8 @@ const Admin = () => {
     const getOrders = async () => {
       try {
         const { data } = await axios.get(
-          'http://localhost:2000/api/admin/dvl/orders',
+          // 'http://localhost:2000/api/admin/dvl/orders',
+          'https://pictusweb.online/api/admin/dvl/orders',
           config
         )
 
@@ -174,12 +173,13 @@ const Admin = () => {
       }
     }
     getOrders()
-  }, [])
+  }, [displayOrders])
 
   const getSingleOrder = async (orderId) => {
     try {
       const { data } = await axios.get(
-        `http://localhost:2000/api/admin/dvl/orders/${orderId}`,
+        `https://pictusweb.online/api/admin/dvl/orders/${orderId}`,
+        // `http://localhost:2000/api/admin/dvl/orders/${orderId}`,
 
         config
       )
@@ -196,7 +196,8 @@ const Admin = () => {
   const editOrder = async (orderId) => {
     try {
       const { data } = await axios.patch(
-        `http://localhost:2000/api/admin/dvl/orders/${orderId}`,
+        `https://pictusweb.online/api/admin/dvl/orders/${orderId}`,
+        // `http://localhost:2000/api/admin/dvl/orders/${orderId}`,
         {
           title,
           name,
@@ -216,7 +217,9 @@ const Admin = () => {
     alert('Skutočne vymazať zákazku?')
     try {
       const { data } = await axios.delete(
-        `http://localhost:2000/api/admin/dvl/orders/${orderId}`
+        `https://pictusweb.online/api/admin/dvl/orders/${orderId}`
+
+        // `http://localhost:2000/api/admin/dvl/orders/${orderId}`
       )
       if (data === 'OK') toast.success('Vymazané')
     } catch (error) {
@@ -256,7 +259,9 @@ const Admin = () => {
     if (query !== '') {
       try {
         const response = await axios.get(
-          `http://localhost:2000/api/admin/dvl/orders/search/${query}`
+          `https://pictusweb.online/api/admin/dvl/orders/search/${query}`
+
+          // `http://localhost:2000/api/admin/dvl/orders/search/${query}`
         )
         setSearchResults(response.data)
         setShowOrderList(false)
