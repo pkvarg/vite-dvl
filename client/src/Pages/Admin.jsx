@@ -157,23 +157,20 @@ const Admin = () => {
     }
   }
 
-  useEffect(() => {
-    const getOrders = async () => {
-      try {
-        const { data } = await axios.get(
-          // 'http://localhost:2000/api/admin/dvl/orders',
-          'https://pictusweb.online/api/admin/dvl/orders',
-          config
-        )
+  const getOrders = async () => {
+    try {
+      const { data } = await axios.get(
+        // 'http://localhost:2000/api/admin/dvl/orders',
+        'https://pictusweb.online/api/admin/dvl/orders',
+        config
+      )
 
-        setDisplayOrders(data)
-      } catch (error) {
-        console.log(error)
-        toast.error('error')
-      }
+      setDisplayOrders(data)
+    } catch (error) {
+      console.log(error)
+      toast.error('error')
     }
-    getOrders()
-  }, [displayOrders])
+  }
 
   const getSingleOrder = async (orderId) => {
     try {
@@ -308,9 +305,9 @@ const Admin = () => {
                 >
                   Vytvoriť zákazku
                 </button>
-                {/* <button onClick={getOrders} className='admin-button'>
+                <button onClick={getOrders} className='admin-button'>
                   Zobraziť Zákazky
-                </button> */}
+                </button>
                 <img
                   className='google-drive'
                   src='/img/Google-Drive.webp'
