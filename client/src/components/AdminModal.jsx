@@ -1,17 +1,6 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { toast } from 'react-hot-toast'
-import { db } from '../App'
-import { v4 as uuidv4 } from 'uuid'
 import './../admin.css'
-
-import {
-  addDoc,
-  getDocs,
-  collection,
-  updateDoc,
-  deleteDoc,
-  doc,
-} from 'firebase/firestore'
 
 const AdminModal = ({
   showModal,
@@ -27,45 +16,20 @@ const AdminModal = ({
   phone,
   setPhone,
   date,
-  setDate,
   description,
   setDescription,
   actionType,
   actionHandler,
+  editOrder,
+  currentOrderId,
 }) => {
-  const ordersCollectionRef = collection(db, 'orders')
-  const uniqueId = uuidv4()
-  const generateUniqueId = () => {
-    return `${Math.random().toString(36).substring(2)}`
-  }
-
-  // const createOrder = (formData) => {
-  //   const { address, name, date, description, phone, title } = formData
-  //   const id = generateUniqueId()
-  //   try {
-  //     addDoc(ordersCollectionRef, {
-  //       address,
-  //       name,
-  //       date,
-  //       description,
-  //       phone,
-  //       title,
-  //       id,
-  //     })
-  //   } catch (error) {
-  //     console.log(error)
-  //     toast.error(error)
-  //   }
-  // }
-
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log(actionType)
     if (actionType === 'create') {
-      actionHandler()
+      actionHandler('create')
+    } else if (actionType === 'edit') {
+      editOrder(currentOrderId)
     }
-    //setShowModal(false)
-    toast.success('OK')
   }
 
   return (

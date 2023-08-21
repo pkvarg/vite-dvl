@@ -13,19 +13,11 @@ const AdminDashboard = ({
   description,
   orderIndex,
   id,
-
-  actionHandler,
+  edit,
+  deleteOrder,
 }) => {
   const formatDate = new Date(date)
   const dashboardDate = getDate(formatDate)
-
-  const editOrder = (orderId) => {
-    actionHandler('edit', orderId)
-  }
-
-  const deleteOrder = (orderId) => {
-    actionHandler('delete', orderId)
-  }
 
   return (
     <div className='dashboard'>
@@ -63,7 +55,7 @@ const AdminDashboard = ({
         </p>
 
         <p>{description}</p>
-        <BiEditAlt className='action-icon' onClick={() => editOrder(id)} />
+        <BiEditAlt className='action-icon' onClick={() => edit(id)} />
         <AiOutlineDelete
           className='action-icon'
           onClick={() => deleteOrder(id)}
