@@ -17,6 +17,7 @@
   height: max-content !important;
   padding: 0 30px;
   padding-bottom: 50px;
+  position: relative;
 }
 
 .first {
@@ -166,10 +167,11 @@
 
 .admin-auth {
   position: relative;
+  height: 100vh;
 }
 
 .admin-modal {
-  background-color: #0f0e0ec9;
+  background-color: #0b0b0a;
   padding: 30px 60px;
   z-index: 999;
   outline: none;
@@ -261,7 +263,7 @@
 }
 
 .admin-search input::placeholder {
-  padding-left: 10px;
+  padding-left: 2.5px;
 }
 
 svg.search-icon {
@@ -317,6 +319,7 @@ svg.search-icon:hover {
 
   .admin-modal {
     padding: 30px 33px;
+    width: 100vw;
     left: -10%;
     top: -200px;
   }
@@ -336,7 +339,7 @@ svg.search-icon:hover {
     flex-direction: row;
     justify-content: space-between;
     width: 50%;
-    margin-bottom: 35px;
+    margin-bottom: 0px;
   }
 
   .admin-button {
@@ -369,6 +372,7 @@ svg.search-icon:hover {
 
   .dashboard {
     border: none;
+    margin-top: 15px;
   }
 
   .dashboard-1 p {
