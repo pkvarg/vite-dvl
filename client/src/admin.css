@@ -1,6 +1,15 @@
-.App {
-  height: 100vh;
+:root {
   background-color: #0b0b0a;
+}
+
+.App {
+  /* height: 100vh; */
+  background-color: #0b0b0a;
+}
+
+.home {
+  width: 4%;
+  cursor: pointer;
 }
 
 .admin {
@@ -26,7 +35,13 @@
 }
 
 .admin h2 {
-  margin-left: auto;
+  background-image: linear-gradient(135deg, #4285f4, #0f9d58, #f4b400, #db4437);
+
+  background-clip: text;
+  -webkit-background-clip: text; /* For Safari support */
+
+  color: transparent;
+  font-weight: 600;
 }
 
 .admin-1 {
@@ -39,20 +54,34 @@
   padding: 0 20px 0 20px;
   border-radius: 15px;
 }
+.admin-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
 
+  gap: 10px;
+}
 .admin-button {
   background-color: #f4eee7;
   color: #000000;
   font-size: 20px;
   border-radius: 25px;
   padding: 5px 15px 5px 15px;
-  margin-left: 35px;
   border: 1px solid #000000;
+  margin-left: 15px;
 }
 
 .admin-button:hover {
-  border: 1px solid #fe9400;
-  color: #d57703;
+  border: 1px solid #1fa945;
+  color: #1fa945;
+}
+
+.order-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 40%;
 }
 
 .greeting {
@@ -66,21 +95,34 @@
   font-size: 45px;
 }
 
+.google-sign-in {
+  width: 3%;
+  margin-top: -5px;
+  margin-left: 5px;
+  cursor: pointer;
+}
+
+.logout-icon {
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.logout-icon:hover {
+  color: #1fa945;
+}
+
 .google-drive {
-  height: 50px;
-  width: 125px;
-  border-radius: 25px;
-  border: 1px solid #000000;
+  width: 12%;
+  cursor: pointer;
+  padding: 7px 15px;
+  margin-left: 25px;
+  margin-top: 2px;
 }
 
 .google-drive:hover {
-  border: 3px solid #d57703;
-}
-
-.admin-buttons {
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
+  border: 2px solid #1fa945;
+  background-color: #f1eded;
+  border-radius: 25px;
 }
 
 .dashboard {
@@ -105,6 +147,11 @@
 
 .dashboard-1 p {
   width: 13%;
+}
+
+.dashboard-icons {
+  display: flex;
+  gap: 5px;
 }
 
 .action-icon {
@@ -199,15 +246,28 @@
   width: 110%;
 }
 
+.search-and-drive {
+  display: flex;
+  width: 40%;
+}
+
 .admin-search input {
-  margin-top: 5px;
   border-radius: 25px;
   padding: 5px;
 }
 
-.search-icon {
+.admin-search input::placeholder {
+  padding-left: 10px;
+}
+
+svg.search-icon {
   color: #f1eded;
   margin-left: 15px;
+  cursor: pointer;
+}
+
+svg.search-icon:hover {
+  color: #1fa945;
 }
 
 /* MEDIA QUERIES MEDIA QUERIES MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES MEDIA QUERIES MEDIA QUERIES MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIESMEDIA QUERIES MEDIA QUERIES MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIESMEDIA QUERIES MEDIA QUERIES MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIESMEDIA QUERIES MEDIA QUERIES MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES */
@@ -215,6 +275,7 @@
 @media (min-width: 100px) and (max-width: 990px) {
   .first {
     flex-direction: column;
+    padding-top: 15px;
   }
 
   .first h1 {
@@ -222,12 +283,20 @@
   }
 
   .first h2 {
-    font-size: 20px;
+    font-size: 22.5px;
     margin-left: 0;
+  }
+
+  .home {
+    width: 10%;
   }
 
   .admin-1 {
     padding: 0px;
+  }
+
+  .order-buttons {
+    width: 100%;
   }
 
   .google-drive {
@@ -247,17 +316,55 @@
   }
 
   .admin-buttons {
+    margin-top: 25px;
     flex-direction: column;
-    justify-content: center;
-    padding-bottom: 15px;
+    align-items: flex-start;
   }
 
-  .admin-button,
-  .google-drive {
+  .search-and-drive {
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 35px;
+  }
+
+  .admin-button {
     margin: 0;
+    padding: 5px;
+  }
+
+  .admin-search {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
   }
 
   .google-drive {
-    margin-left: 25%;
+    width: 22.5%;
+    height: fit-content;
+    margin-left: 0px;
+    margin-bottom: 0;
+  }
+
+  .dashboard-1 {
+    overflow-x: scroll;
+  }
+
+  .dashboard {
+    border: none;
+  }
+
+  .dashboard-1 p {
+    width: fit-content;
+  }
+
+  .dashboard-icons {
+    flex-direction: column;
+  }
+
+  svg.action-icon {
+    font-size: larger;
+    fill: #1fa945;
+    margin-left: 5px;
   }
 }

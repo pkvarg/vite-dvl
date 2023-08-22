@@ -55,11 +55,13 @@ const AdminDashboard = ({
         </p>
 
         <p>{description}</p>
-        <BiEditAlt className='action-icon' onClick={() => edit(id)} />
-        <AiOutlineDelete
-          className='action-icon'
-          onClick={() => deleteOrder(id)}
-        />
+        <div className='dashboard-icons'>
+          <BiEditAlt className='action-icon' onClick={() => edit(id)} />
+          <AiOutlineDelete
+            className='action-icon'
+            onClick={() => deleteOrder(id)}
+          />
+        </div>
       </div>
     </div>
   )

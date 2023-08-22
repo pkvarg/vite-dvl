@@ -10,6 +10,7 @@ import useDrivePicker from 'react-google-drive-picker'
 import { AdminDashboard, AdminModal, AdminSearch } from '../components'
 import axios from 'axios'
 import './../admin.css'
+import { RiLogoutBoxRLine } from 'react-icons/ri'
 
 const Admin = () => {
   const navigate = useNavigate()
@@ -82,13 +83,13 @@ const Admin = () => {
             viewId: 'DOCS',
             viewMimeTypes: 'image/jpeg,image/png,image/gif',
             token: tokenInfo ? tokenInfo.access_token : null,
-            // token: import.meta.env.VITE_NEW_TOKEN,
+            //token: import.meta.env.VITE_NEW_TOKEN,
             showUploadView: true,
             showUploadFolders: true,
             supportDrives: true,
             multiselect: true,
-            //setOrigin: 'http://localhost:5173',
-            setOrigin: 'https://kvalitnamontaz.sk',
+            setOrigin: 'http://localhost:5173',
+            // setOrigin: 'https://kvalitnamontaz.sk',
 
             callbackFunction: (data) => {
               const elements = Array.from(
@@ -269,56 +270,72 @@ const Admin = () => {
     }
   }
 
+  const openGoogleDrive = () => {
+    window.open('https://drive.google.com', '_blank')
+  }
+
   return (
     <>
       <div className='admin'>
         <div className='first'>
-          <h1 onClick={() => navigate('/')}>Domov.</h1>
+          <img
+            src='/img/home.webp'
+            alt='home'
+            className='home'
+            onClick={() => navigate('/')}
+          ></img>
           <h2>
             Dnes je {displayDay} {displayDayOfMonth}. {displayMonth}{' '}
             {displayYear}
           </h2>
           {isAuth === xauth ? (
             <>
-              <button onClick={signUserOut} className='admin-button'>
-                Odhlásiť sa
-              </button>
+              <RiLogoutBoxRLine className='logout-icon' onClick={signUserOut} />
             </>
           ) : (
             <>
-              <button onClick={signInWithGoogle} className='admin-button'>
-                Prihlásenie cez Google
-              </button>
+              <img
+                className='google-sign-in'
+                src='/img/google.webp'
+                alt='google'
+                onClick={signInWithGoogle}
+              />
             </>
           )}
         </div>
         <div className='admin-1'>
           {isAuth === xauth && (
             <>
-              {/* <div className='greeting'>
-                <h1>Vitaj Tomáš</h1>
-              </div> */}
               <div className='admin-buttons'>
-                <button
-                  onClick={() => modalAction('create')}
-                  className='admin-button'
-                >
-                  Vytvoriť zákazku
-                </button>
-                <button onClick={getOrders} className='admin-button'>
-                  Zobraziť Zákazky
-                </button>
-                <img
-                  className='google-drive'
-                  src='/img/Google-Drive.webp'
-                  alt='Google-Drive'
-                  onClick={() => handleOpenPicker()}
-                />
-                <AdminSearch
-                  handleSearch={handleSearch}
-                  setShowOrderList={setShowOrderList}
-                  setShowSearchResults={setShowSearchResults}
-                />
+                <div className='order-buttons'>
+                  <button
+                    onClick={() => modalAction('create')}
+                    className='admin-button'
+                  >
+                    Vytvoriť zákazku
+                  </button>
+                  <button onClick={getOrders} className='admin-button'>
+                    Zobraziť Zákazky
+                  </button>
+                </div>
+                <div className='search-and-drive'>
+                  <AdminSearch
+                    handleSearch={handleSearch}
+                    setShowOrderList={setShowOrderList}
+                    setShowSearchResults={setShowSearchResults}
+                  />
+                  <img
+                    className='google-drive'
+                    src='/img/drive.webp'
+                    alt='Google-Drive'
+                    // onClick={() => handleOpenPicker()}
+                    onClick={openGoogleDrive}
+                  />
+                </div>
+
+                {/* <div>
+                  <button onClick={openGoogleDrive}>Open Google Drive</button>
+                </div> */}
               </div>
             </>
           )}
