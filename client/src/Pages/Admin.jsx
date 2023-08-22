@@ -285,13 +285,19 @@ const Admin = () => {
             onClick={() => navigate('/')}
           ></img>
           <h2>
-            Dnes je {displayDay} {displayDayOfMonth}. {displayMonth}{' '}
-            {displayYear}
+            {displayDay} {displayDayOfMonth}. {displayMonth} {displayYear}
           </h2>
           {isAuth === xauth ? (
-            <>
+            <div className='out-and-drive'>
+              <img
+                className='google-drive'
+                src='/img/drive.webp'
+                alt='Google-Drive'
+                // onClick={() => handleOpenPicker()}
+                onClick={openGoogleDrive}
+              />
               <RiLogoutBoxRLine className='logout-icon' onClick={signUserOut} />
-            </>
+            </div>
           ) : (
             <>
               <img
@@ -318,20 +324,11 @@ const Admin = () => {
                     Zobraziť Zákazky
                   </button>
                 </div>
-                <div className='search-and-drive'>
-                  <AdminSearch
-                    handleSearch={handleSearch}
-                    setShowOrderList={setShowOrderList}
-                    setShowSearchResults={setShowSearchResults}
-                  />
-                  <img
-                    className='google-drive'
-                    src='/img/drive.webp'
-                    alt='Google-Drive'
-                    // onClick={() => handleOpenPicker()}
-                    onClick={openGoogleDrive}
-                  />
-                </div>
+                <AdminSearch
+                  handleSearch={handleSearch}
+                  setShowOrderList={setShowOrderList}
+                  setShowSearchResults={setShowSearchResults}
+                />
 
                 {/* <div>
                   <button onClick={openGoogleDrive}>Open Google Drive</button>
