@@ -4,7 +4,6 @@ import SixSections from './SixSections'
 import Message from './Message'
 import ScrollToTop from './ScrollToTop'
 import AdminDashboard from './AdminDashboard'
-import AdminEdit from './AdminEdit'
 import AdminModal from './AdminModal'
 import AdminSearch from './AdminSearch'
 
@@ -15,7 +14,6 @@ export {
   Message,
   ScrollToTop,
   AdminDashboard,
-  AdminEdit,
   AdminModal,
   AdminSearch,
 }

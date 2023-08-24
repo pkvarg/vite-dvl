@@ -6,7 +6,6 @@ import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-hot-toast'
 import { useStateContext } from '../context/StateContext'
 import getDate from '../date'
-import useDrivePicker from 'react-google-drive-picker'
 import { AdminDashboard, AdminModal, AdminSearch } from '../components'
 import axios from 'axios'
 import './../admin.css'
@@ -27,7 +26,11 @@ const Admin = () => {
   const [address, setAddress] = useState('')
   const [phone, setPhone] = useState('')
   const [date, setDate] = useState()
+  const [price, setPrice] = useState()
   const [description, setDescription] = useState('')
+  const [uploadedFile, setUploadedFile] = useState({})
+
+  const [uploadedFiles, setUploadedFiles] = useState([])
   const [actionType, setActionType] = useState('')
   const [currentOrderId, setCurrentOrderId] = useState()
   const [showOderList, setShowOrderList] = useState(true)
@@ -67,90 +70,65 @@ const Admin = () => {
 
   const [showModal, setShowModal] = useState(false)
 
-  const [openPicker] = useDrivePicker()
-
-  const handleOpenPicker = () => {
-    gapi.load('client:auth2', () => {
-      gapi.client
-        .init({
-          apiKey: import.meta.env.VITE_NEW_API_KEY,
-        })
-        .then(() => {
-          let tokenInfo = gapi.auth.getToken()
-          const pickerConfig = {
-            clientId: import.meta.env.VITE_NEW_OAUTH_CLIENT_ID,
-            developerKey: import.meta.env.VITE_NEW_API_KEY,
-            viewId: 'DOCS',
-            viewMimeTypes: 'image/jpeg,image/png,image/gif',
-            token: tokenInfo ? tokenInfo.access_token : null,
-            //token: import.meta.env.VITE_NEW_TOKEN,
-            showUploadView: true,
-            showUploadFolders: true,
-            supportDrives: true,
-            multiselect: true,
-            setOrigin: 'http://localhost:5173',
-            // setOrigin: 'https://kvalitnamontaz.sk',
-
-            callbackFunction: (data) => {
-              const elements = Array.from(
-                document.getElementsByClassName('picker-dialog')
-              )
-              for (let i = 0; i < elements.length; i++) {
-                elements[i].style.zIndex = '2000'
-              }
-              if (data.action === 'picked') {
-                //Add your desired workflow when choosing a file from the Google Picker popup
-                //In this below code, I'm attempting to get the file's information.
-                if (!tokenInfo) {
-                  tokenInfo = gapi.auth.getToken()
-                }
-                const fetchOptions = {
-                  headers: {
-                    Authorization: `Bearer ${import.meta.env.VITE_NEW_TOKEN}`,
-                  },
-                }
-                const driveFileUrl = 'https://www.googleapis.com/drive/v3/files'
-                data.docs.map(async (item) => {
-                  const response = await fetch(
-                    `${driveFileUrl}/${item.id}?alt=media`,
-                    fetchOptions
-                  )
-                })
-              }
-            },
-          }
-          openPicker(pickerConfig)
-        })
-    })
-  }
-
   const config = {
     headers: {
       'Content-Type': 'application/json',
     },
   }
 
-  const createOrder = async () => {
+  console.log(uploadedFile)
+
+  const uploadSingleFile = async () => {
     try {
+      // uploaded files
+      const formData = new FormData()
+      formData.append('image', uploadedFile)
+
       const { data } = await axios.post(
-        'https://pictusweb.online/api/admin/dvl/orders',
-        // 'http://localhost:2000/api/admin/dvl/orders',
-        {
-          title,
-          name,
-          address,
-          description,
-          phone,
-        },
+        // 'https://pictusweb.online/api/admin/dvl/orders',
+        'http://localhost:2000/api/admin/dvl/upload/single',
+        formData,
         config
       )
+    } catch (error) {
+      console.log(error)
+      toast.error('error')
+    }
+  }
+
+  const createOrder = async () => {
+    try {
+      const formData = new FormData()
+      formData.append('image', uploadedFile)
+      const { data } = await axios.post(
+        // 'https://pictusweb.online/api/admin/dvl/orders',
+        'http://localhost:2000/api/admin/single',
+        formData
+      )
+      // const { data } = await axios.post(
+      //   // 'https://pictusweb.online/api/admin/dvl/orders',
+      //   'http://localhost:2000/api/admin/dvl/orders',
+      //   {
+      //     title,
+      //     name,
+      //     address,
+      //     description,
+      //     phone,
+      //     date,
+      //     price,
+      //   },
+      //   config
+      // )
       if (data === 'OK') {
         toast.success('Vytvorené')
         setTitle('')
         setName('')
         setAddress('')
         setPhone('')
+        setDate()
+        setPrice()
         setDescription('')
+        getOrders()
       }
     } catch (error) {
       console.log(error)
@@ -161,8 +139,8 @@ const Admin = () => {
   const getOrders = async () => {
     try {
       const { data } = await axios.get(
-        // 'http://localhost:2000/api/admin/dvl/orders',
-        'https://pictusweb.online/api/admin/dvl/orders',
+        'http://localhost:2000/api/admin/dvl/orders',
+        // 'https://pictusweb.online/api/admin/dvl/orders',
         config
       )
 
@@ -176,8 +154,8 @@ const Admin = () => {
   const getSingleOrder = async (orderId) => {
     try {
       const { data } = await axios.get(
-        `https://pictusweb.online/api/admin/dvl/orders/${orderId}`,
-        // `http://localhost:2000/api/admin/dvl/orders/${orderId}`,
+        // `https://pictusweb.online/api/admin/dvl/orders/${orderId}`,
+        `http://localhost:2000/api/admin/dvl/orders/${orderId}`,
 
         config
       )
@@ -186,6 +164,8 @@ const Admin = () => {
       setAddress(data.address)
       setPhone(data.phone)
       setDescription(data.description)
+      setPrice(data.price)
+      setDate(data.date)
     } catch (error) {
       console.log(error)
       toast.error('error')
@@ -194,18 +174,22 @@ const Admin = () => {
   const editOrder = async (orderId) => {
     try {
       const { data } = await axios.patch(
-        `https://pictusweb.online/api/admin/dvl/orders/${orderId}`,
-        // `http://localhost:2000/api/admin/dvl/orders/${orderId}`,
+        // `https://pictusweb.online/api/admin/dvl/orders/${orderId}`,
+        `http://localhost:2000/api/admin/dvl/orders/${orderId}`,
         {
           title,
           name,
           address,
           description,
           phone,
+          price,
+          date,
         },
         config
       )
       if (data) setShowModal(false)
+      getOrders()
+      // window.location.reload()
     } catch (error) {
       console.log(error)
       toast.error('error')
@@ -220,6 +204,7 @@ const Admin = () => {
         // `http://localhost:2000/api/admin/dvl/orders/${orderId}`
       )
       if (data === 'OK') toast.success('Vymazané')
+      getOrders()
     } catch (error) {
       console.log(error)
       toast.error('error')
@@ -293,7 +278,6 @@ const Admin = () => {
                 className='google-drive'
                 src='/img/drive.webp'
                 alt='Google-Drive'
-                // onClick={() => handleOpenPicker()}
                 onClick={openGoogleDrive}
               />
               <RiLogoutBoxRLine className='logout-icon' onClick={signUserOut} />
@@ -329,10 +313,6 @@ const Admin = () => {
                   setShowOrderList={setShowOrderList}
                   setShowSearchResults={setShowSearchResults}
                 />
-
-                {/* <div>
-                  <button onClick={openGoogleDrive}>Open Google Drive</button>
-                </div> */}
               </div>
             </>
           )}
@@ -355,8 +335,14 @@ const Admin = () => {
                 setDate={setDate}
                 phone={phone}
                 setPhone={setPhone}
+                price={price}
+                setPrice={setPrice}
                 description={description}
                 setDescription={setDescription}
+                uploadedFiles={uploadedFiles}
+                setUploadedFiles={setUploadedFiles}
+                uploadedFile={uploadedFile}
+                setUploadedFile={setUploadedFile}
                 actionType={actionType}
                 actionHandler={actionHandler}
                 currentOrderId={currentOrderId}
@@ -369,7 +355,8 @@ const Admin = () => {
                     title={order.title}
                     name={order.name}
                     address={order.address}
-                    date={order.createdAt}
+                    date={order.date}
+                    price={order.price}
                     phone={order.phone}
                     description={order.description}
                     orderIndex={i + 1}

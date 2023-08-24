@@ -225,7 +225,7 @@
   border: 2px solid #ffffff;
   padding: 0 75px;
   border-radius: 25px;
-  width: 100%;
+  width: 75%;
 }
 
 .admin-modal-form button:hover {
@@ -276,6 +276,16 @@ svg.search-icon:hover {
   color: #1fa945;
 }
 
+.date-field {
+  width: 75%;
+  height: 32.5px;
+}
+
+input.files-field {
+  width: 75%;
+  padding: 0;
+}
+
 /* MEDIA QUERIES MEDIA QUERIES MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES MEDIA QUERIES MEDIA QUERIES MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIESMEDIA QUERIES MEDIA QUERIES MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIESMEDIA QUERIES MEDIA QUERIES MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIESMEDIA QUERIES MEDIA QUERIES MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES */
 
 @media (min-width: 100px) and (max-width: 990px) {
@@ -309,12 +319,6 @@ svg.search-icon:hover {
   .order-buttons {
     width: 100%;
     justify-content: center;
-  }
-
-  .google-drive {
-    height: 80px;
-    width: 155px;
-    margin-bottom: 25px;
   }
 
   .admin-modal {

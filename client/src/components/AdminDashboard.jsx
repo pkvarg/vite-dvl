@@ -10,6 +10,7 @@ const AdminDashboard = ({
   address,
   date,
   phone,
+  price,
   description,
   orderIndex,
   id,
@@ -44,13 +45,18 @@ const AdminDashboard = ({
         <p>
           {dashboardDate.dayOfMonth}
           {'.'}
-          {dashboardDate.month}
+          {dashboardDate.month + 1}
           {'.'} {dashboardDate.year}
           {','}{' '}
         </p>
 
         <p>
           {phone}
+          {','}{' '}
+        </p>
+
+        <p>
+          {price} &euro;
           {','}{' '}
         </p>
 

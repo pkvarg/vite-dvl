@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { toast } from 'react-hot-toast'
 import './../admin.css'
 
@@ -16,8 +16,15 @@ const AdminModal = ({
   phone,
   setPhone,
   date,
+  setDate,
+  price,
+  setPrice,
   description,
   setDescription,
+  uploadedFiles,
+  setUploadedFiles,
+  uploadedFile,
+  setUploadedFile,
   actionType,
   actionHandler,
   editOrder,
@@ -47,54 +54,78 @@ const AdminModal = ({
                   X
                 </p>
               </div>
-              <label>
-                <input
-                  type='text'
-                  placeholder='Názov'
-                  name='title'
-                  value={title}
-                  onChange={(e) => setTitle(e.target.value)}
-                />
-              </label>
-              <label>
-                <input
-                  type='text'
-                  placeholder='Meno'
-                  name='name'
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                />
-              </label>
-              <label>
-                <input
-                  type='text'
-                  placeholder='Adresa'
-                  name='address'
-                  value={address}
-                  onChange={(e) => setAddress(e.target.value)}
-                />
-              </label>
-              <label>
-                <input
-                  type='text'
-                  placeholder='Telefón'
-                  name='phone'
-                  value={phone}
-                  onChange={(e) => setPhone(e.target.value)}
-                />
-              </label>
-              {date}
 
-              <label>
-                <textarea
-                  name='description'
-                  placeholder='Popis'
-                  value={description}
-                  onChange={(e) => setDescription(e.target.value)}
-                />
-              </label>
+              <input
+                type='text'
+                placeholder='Názov'
+                name='title'
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+              />
 
-              <button type='submit'>{formAction}</button>
+              <input
+                type='text'
+                placeholder='Meno'
+                name='name'
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
+
+              <input
+                type='text'
+                placeholder='Adresa'
+                name='address'
+                value={address}
+                onChange={(e) => setAddress(e.target.value)}
+              />
+
+              <input
+                type='text'
+                placeholder='Telefón'
+                name='phone'
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+              />
+
+              <input
+                type='text'
+                placeholder='Suma'
+                name='price'
+                value={price}
+                onChange={(e) => setPrice(e.target.value)}
+              />
+
+              <input
+                className='date-field'
+                type='date'
+                name='date'
+                value={date}
+                onChange={(e) => setDate(e.target.value)}
+              />
+
+              <textarea
+                name='description'
+                placeholder='Popis'
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+              />
+
+              {/* <input
+                className='files-field'
+                onChange={(e) => setUploadedFiles(e.target.files)}
+                type='file'
+                multiple
+              /> */}
+
+              <input
+                className='files-field'
+                onChange={(e) => setUploadedFile(e.target.files[0])}
+                type='file'
+              />
+
+              <button className='modal-button' type='submit'>
+                {formAction}
+              </button>
             </form>
           </div>
         </div>
