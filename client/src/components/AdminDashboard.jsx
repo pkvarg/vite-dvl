@@ -2,7 +2,7 @@ import React from 'react'
 import './../admin.css'
 import getDate from '../date'
 import { BiEditAlt } from 'react-icons/bi'
-import { AiOutlineDelete } from 'react-icons/ai'
+import { AiOutlineDelete, AiOutlineFile } from 'react-icons/ai'
 
 const AdminDashboard = ({
   title,
@@ -16,9 +16,17 @@ const AdminDashboard = ({
   id,
   edit,
   deleteOrder,
+  files,
+  setShowAdminFiles,
+  setCurrentOrderId,
 }) => {
   const formatDate = new Date(date)
   const dashboardDate = getDate(formatDate)
+
+  const adminFiles = (id) => {
+    setShowAdminFiles(true)
+    setCurrentOrderId(id)
+  }
 
   return (
     <div className='dashboard'>
@@ -68,6 +76,14 @@ const AdminDashboard = ({
             onClick={() => deleteOrder(id)}
           />
         </div>
+        {files.length > 0 && (
+          <AiOutlineFile
+            className='action-icon-file'
+            onClick={() => adminFiles(id)}
+          />
+        )}
+        {/* {files &&
+          files.map((file) => <p key={file.fileName}>{file.fileName}</p>)} */}
       </div>
     </div>
   )

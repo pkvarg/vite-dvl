@@ -161,6 +161,12 @@
   margin-top: 5px;
 }
 
+.action-icon-file {
+  cursor: pointer;
+  margin-top: 5px;
+  color: #0f9d58;
+}
+
 .action-icon:hover {
   color: #fe9400;
 }
@@ -284,6 +290,34 @@ svg.search-icon:hover {
 input.files-field {
   width: 75%;
   padding: 0;
+}
+
+.file-icon {
+  font-size: 50px;
+}
+
+.files-modal {
+  position: absolute;
+  right: 40%;
+  top: 0;
+  background-color: #0b0b0a;
+  padding: 60px;
+  border: 1px solid #0f9d58;
+  border-radius: 35px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+
+.files-close {
+  position: absolute;
+  top: 1%;
+  right: 2%;
+  font-size: 30px;
+  cursor: pointer;
+  padding: 0px 15px;
 }
 
 /* MEDIA QUERIES MEDIA QUERIES MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES MEDIA QUERIES MEDIA QUERIES MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIESMEDIA QUERIES MEDIA QUERIES MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIESMEDIA QUERIES MEDIA QUERIES MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIESMEDIA QUERIES MEDIA QUERIES MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES */

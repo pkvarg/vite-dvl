@@ -6,7 +6,12 @@ import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-hot-toast'
 import { useStateContext } from '../context/StateContext'
 import getDate from '../date'
-import { AdminDashboard, AdminModal, AdminSearch } from '../components'
+import {
+  AdminDashboard,
+  AdminFilesComponent,
+  AdminModal,
+  AdminSearch,
+} from '../components'
 import axios from 'axios'
 import './../admin.css'
 import { RiLogoutBoxRLine } from 'react-icons/ri'
@@ -28,13 +33,12 @@ const Admin = () => {
   const [date, setDate] = useState()
   const [price, setPrice] = useState()
   const [description, setDescription] = useState('')
-  const [uploadedFile, setUploadedFile] = useState({})
-
   const [uploadedFiles, setUploadedFiles] = useState([])
   const [actionType, setActionType] = useState('')
   const [currentOrderId, setCurrentOrderId] = useState()
   const [showOderList, setShowOrderList] = useState(true)
   const [showSearchResults, setShowSearchResults] = useState(false)
+  const [showAdminFiles, setShowAdminFiles] = useState(false)
 
   const signInWithGoogle = () => {
     signInWithPopup(auth, provider).then((result) => {
@@ -76,60 +80,44 @@ const Admin = () => {
     },
   }
 
-  console.log(uploadedFile)
+  const formData = new FormData()
+  const appendFormData = () => {
+    formData.append('title', title)
+    formData.append('name', name)
+    formData.append('address', address)
+    formData.append('phone', phone)
+    formData.append('price', price)
+    formData.append('date', date)
+    formData.append('description', description)
+  }
 
-  const uploadSingleFile = async () => {
-    try {
-      // uploaded files
-      const formData = new FormData()
-      formData.append('image', uploadedFile)
-
-      const { data } = await axios.post(
-        // 'https://pictusweb.online/api/admin/dvl/orders',
-        'http://localhost:2000/api/admin/dvl/upload/single',
-        formData,
-        config
-      )
-    } catch (error) {
-      console.log(error)
-      toast.error('error')
-    }
+  const clearModal = () => {
+    setTitle('')
+    setName('')
+    setAddress('')
+    setPhone('')
+    setDate()
+    setPrice()
+    setDescription('')
+    setUploadedFiles([])
+    getOrders()
   }
 
   const createOrder = async () => {
     try {
-      const formData = new FormData()
-      formData.append('image', uploadedFile)
+      appendFormData()
+
+      for (let i = 0; i < uploadedFiles.length; i++) {
+        formData.append('images', uploadedFiles[i])
+      }
       const { data } = await axios.post(
         // 'https://pictusweb.online/api/admin/dvl/orders',
-        'http://localhost:2000/api/admin/single',
+        'http://localhost:2000/api/admin/dvl/orders',
         formData
       )
-      // const { data } = await axios.post(
-      //   // 'https://pictusweb.online/api/admin/dvl/orders',
-      //   'http://localhost:2000/api/admin/dvl/orders',
-      //   {
-      //     title,
-      //     name,
-      //     address,
-      //     description,
-      //     phone,
-      //     date,
-      //     price,
-      //   },
-      //   config
-      // )
-      if (data === 'OK') {
-        toast.success('Vytvorené')
-        setTitle('')
-        setName('')
-        setAddress('')
-        setPhone('')
-        setDate()
-        setPrice()
-        setDescription('')
-        getOrders()
-      }
+
+      if (data === 'OK') toast.success('Vytvorené')
+      clearModal()
     } catch (error) {
       console.log(error)
       toast.error('error')
@@ -145,6 +133,7 @@ const Admin = () => {
       )
 
       setDisplayOrders(data)
+      console.log('getO', data)
     } catch (error) {
       console.log(error)
       toast.error('error')
@@ -259,6 +248,8 @@ const Admin = () => {
     window.open('https://drive.google.com', '_blank')
   }
 
+  console.log(showAdminFiles, currentOrderId)
+
   return (
     <>
       <div className='admin'>
@@ -341,12 +332,16 @@ const Admin = () => {
                 setDescription={setDescription}
                 uploadedFiles={uploadedFiles}
                 setUploadedFiles={setUploadedFiles}
-                uploadedFile={uploadedFile}
-                setUploadedFile={setUploadedFile}
                 actionType={actionType}
                 actionHandler={actionHandler}
                 currentOrderId={currentOrderId}
                 editOrder={editOrder}
+              />
+              <AdminFilesComponent
+                showAdminFiles={showAdminFiles}
+                setShowAdminFiles={setShowAdminFiles}
+                displayOrders={displayOrders}
+                currentOrderId={currentOrderId}
               />
               {showOderList &&
                 displayOrders.map((order, i) => (
@@ -363,6 +358,9 @@ const Admin = () => {
                     id={order._id}
                     edit={edit}
                     deleteOrder={deleteOrder}
+                    files={order.files}
+                    setShowAdminFiles={setShowAdminFiles}
+                    setCurrentOrderId={setCurrentOrderId}
                   />
                 ))}
               {showSearchResults &&

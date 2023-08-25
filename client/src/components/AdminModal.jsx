@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
-import { toast } from 'react-hot-toast'
+import React from 'react'
 import './../admin.css'
+import axios from 'axios'
 
 const AdminModal = ({
   showModal,
@@ -23,8 +23,6 @@ const AdminModal = ({
   setDescription,
   uploadedFiles,
   setUploadedFiles,
-  uploadedFile,
-  setUploadedFile,
   actionType,
   actionHandler,
   editOrder,
@@ -101,6 +99,7 @@ const AdminModal = ({
                 name='date'
                 value={date}
                 onChange={(e) => setDate(e.target.value)}
+                required
               />
 
               <textarea
@@ -110,17 +109,11 @@ const AdminModal = ({
                 onChange={(e) => setDescription(e.target.value)}
               />
 
-              {/* <input
+              <input
                 className='files-field'
                 onChange={(e) => setUploadedFiles(e.target.files)}
                 type='file'
                 multiple
-              /> */}
-
-              <input
-                className='files-field'
-                onChange={(e) => setUploadedFile(e.target.files[0])}
-                type='file'
               />
 
               <button className='modal-button' type='submit'>
