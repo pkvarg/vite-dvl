@@ -31,7 +31,7 @@ const AdminDashboard = ({
   return (
     <div className='dashboard'>
       <div className='dashboard-1'>
-        <p>
+        <p className='order-index'>
           {orderIndex}
           {'.'}{' '}
         </p>
@@ -68,22 +68,22 @@ const AdminDashboard = ({
           {','}{' '}
         </p>
 
-        <p>{description}</p>
+        <p className='description'>{description}</p>
         <div className='dashboard-icons'>
-          <BiEditAlt className='action-icon' onClick={() => edit(id)} />
+          {files.length > 0 ? (
+            <AiOutlineFile
+              className='action-icon-file'
+              onClick={() => adminFiles(id)}
+            />
+          ) : (
+            <div className='empty-icon'></div>
+          )}
+          <BiEditAlt className='action-icon edit' onClick={() => edit(id)} />
           <AiOutlineDelete
-            className='action-icon'
+            className='action-icon delete'
             onClick={() => deleteOrder(id)}
           />
         </div>
-        {files.length > 0 && (
-          <AiOutlineFile
-            className='action-icon-file'
-            onClick={() => adminFiles(id)}
-          />
-        )}
-        {/* {files &&
-          files.map((file) => <p key={file.fileName}>{file.fileName}</p>)} */}
       </div>
     </div>
   )

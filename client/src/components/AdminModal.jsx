@@ -1,6 +1,8 @@
 import React from 'react'
 import './../admin.css'
-import axios from 'axios'
+import getDate from '../date'
+
+import { AiOutlineFile } from 'react-icons/ai'
 
 const AdminModal = ({
   showModal,
@@ -27,6 +29,7 @@ const AdminModal = ({
   actionHandler,
   editOrder,
   currentOrderId,
+  clearModal,
 }) => {
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -36,6 +39,13 @@ const AdminModal = ({
       editOrder(currentOrderId)
     }
   }
+
+  const closeModal = () => {
+    setShowModal(false)
+    clearModal()
+  }
+  const formatDate = new Date(date)
+  const modalDate = getDate(formatDate)
 
   return (
     <div>
@@ -47,7 +57,7 @@ const AdminModal = ({
                 <p>{formTitle}</p>
                 <p
                   className='admin-modal-form-close'
-                  onClick={() => setShowModal(false)}
+                  onClick={() => closeModal()}
                 >
                   X
                 </p>
@@ -99,8 +109,14 @@ const AdminModal = ({
                 name='date'
                 value={date}
                 onChange={(e) => setDate(e.target.value)}
-                required
               />
+
+              <p className='modal-date'>
+                {modalDate.dayOfMonth || ''}
+                {'.'}
+                {modalDate.month + 1 || ''}
+                {'.'} {modalDate.year || ''}
+              </p>
 
               <textarea
                 name='description'

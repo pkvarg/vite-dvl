@@ -133,7 +133,6 @@ const Admin = () => {
       )
 
       setDisplayOrders(data)
-      console.log('getO', data)
     } catch (error) {
       console.log(error)
       toast.error('error')
@@ -155,6 +154,7 @@ const Admin = () => {
       setDescription(data.description)
       setPrice(data.price)
       setDate(data.date)
+      setUploadedFiles(data.files)
     } catch (error) {
       console.log(error)
       toast.error('error')
@@ -162,23 +162,19 @@ const Admin = () => {
   }
   const editOrder = async (orderId) => {
     try {
+      appendFormData()
+
+      for (let i = 0; i < uploadedFiles.length; i++) {
+        formData.append('images', uploadedFiles[i])
+      }
       const { data } = await axios.patch(
         // `https://pictusweb.online/api/admin/dvl/orders/${orderId}`,
         `http://localhost:2000/api/admin/dvl/orders/${orderId}`,
-        {
-          title,
-          name,
-          address,
-          description,
-          phone,
-          price,
-          date,
-        },
-        config
+        formData
       )
       if (data) setShowModal(false)
       getOrders()
-      // window.location.reload()
+      clearModal()
     } catch (error) {
       console.log(error)
       toast.error('error')
@@ -247,8 +243,6 @@ const Admin = () => {
   const openGoogleDrive = () => {
     window.open('https://drive.google.com', '_blank')
   }
-
-  console.log(showAdminFiles, currentOrderId)
 
   return (
     <>
@@ -336,12 +330,14 @@ const Admin = () => {
                 actionHandler={actionHandler}
                 currentOrderId={currentOrderId}
                 editOrder={editOrder}
+                clearModal={clearModal}
               />
               <AdminFilesComponent
                 showAdminFiles={showAdminFiles}
                 setShowAdminFiles={setShowAdminFiles}
                 displayOrders={displayOrders}
                 currentOrderId={currentOrderId}
+                getOrders={getOrders}
               />
               {showOderList &&
                 displayOrders.map((order, i) => (

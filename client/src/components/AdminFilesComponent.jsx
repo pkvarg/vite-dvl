@@ -1,27 +1,50 @@
 import React from 'react'
 import { AiOutlineDelete, AiOutlineFile } from 'react-icons/ai'
+import axios from 'axios'
+import { toast } from 'react-hot-toast'
 
 const AdminFilesComponent = ({
   showAdminFiles,
   setShowAdminFiles,
   displayOrders,
   currentOrderId,
+  getOrders,
 }) => {
-  console.log(displayOrders, currentOrderId)
-
   const currentOrder = displayOrders.find(
     (order) => order._id === currentOrderId && order
   )
 
-  console.log(currentOrder)
+  const deleteFile = async (i) => {
+    try {
+      const index = i
+
+      const { data } = await axios.patch(
+        `http://localhost:2000/api/admin/dvl/files/${currentOrderId}`,
+        {
+          index,
+        }
+      )
+      if (data === 'OK') {
+        toast.success('Vymazané')
+        setShowAdminFiles(false)
+        getOrders()
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   return (
     showAdminFiles && (
       <div className='files-modal'>
-        {currentOrder.files.map((file) => (
+        {currentOrder.files.map((file, i) => (
           <div key={file.fileName}>
             <AiOutlineFile className='file-icon' />
-            <p>{file.fileName}</p>
+            <AiOutlineDelete
+              className='delete '
+              onClick={() => deleteFile(i)}
+            />
+            <p className='edit'>{file.fileName}</p>
           </div>
         ))}
         <p className='files-close' onClick={() => setShowAdminFiles(false)}>
