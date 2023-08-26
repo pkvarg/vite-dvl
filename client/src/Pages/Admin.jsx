@@ -181,18 +181,21 @@ const Admin = () => {
     }
   }
   const deleteOrder = async (orderId) => {
-    alert('Skutočne vymazať zákazku?')
-    try {
-      const { data } = await axios.delete(
-        `https://pictusweb.online/api/admin/dvl/orders/${orderId}`
+    if (window.confirm('Skutočne vymazať zákazku?')) {
+      try {
+        const { data } = await axios.delete(
+          `https://pictusweb.online/api/admin/dvl/orders/${orderId}`
 
-        // `http://localhost:2000/api/admin/dvl/orders/${orderId}`
-      )
-      if (data === 'OK') toast.success('Vymazané')
-      getOrders()
-    } catch (error) {
-      console.log(error)
-      toast.error('error')
+          // `http://localhost:2000/api/admin/dvl/orders/${orderId}`
+        )
+        if (data === 'OK') toast.success('Vymazané')
+        getOrders()
+      } catch (error) {
+        console.log(error)
+        toast.error('error')
+      }
+    } else {
+      alert('Nič sa nebude mazať :-)')
     }
   }
 

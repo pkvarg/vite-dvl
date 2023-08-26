@@ -316,7 +316,7 @@ input.files-field {
 }
 
 .file-icon {
-  font-size: 50px;
+  font-size: 35px;
 }
 
 .files-modal {
@@ -363,6 +363,17 @@ p.modal-date {
   border-radius: 35px;
   padding-left: 25%;
   width: 75%;
+}
+
+.delete-file {
+  font-size: 22.5px;
+}
+
+.download-file {
+  color: #0fe94d;
+  font-size: 22.5px;
+  margin-left: 2.5px;
+  cursor: pointer;
 }
 /* MEDIA QUERIES MEDIA QUERIES MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES MEDIA QUERIES MEDIA QUERIES MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIESMEDIA QUERIES MEDIA QUERIES MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIESMEDIA QUERIES MEDIA QUERIES MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIESMEDIA QUERIES MEDIA QUERIES MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES */
 
@@ -462,12 +473,25 @@ p.modal-date {
   }
 
   .dashboard-icons {
-    flex-direction: column;
+    width: max-content;
+    margin-top: 5%;
+    margin-left: 5%;
+  }
+
+  .dashboard-1 p:nth-child(1),
+  .dashboard-1 p:nth-child(5),
+  .dashboard-1 p:nth-child(7) {
+    width: max-content;
   }
 
   svg.action-icon {
     font-size: larger;
-    fill: #1fa945;
     margin-left: 5px;
+  }
+
+  .files-modal {
+    right: -3.5%;
+    width: 90vw;
+    flex-direction: column;
   }
 }

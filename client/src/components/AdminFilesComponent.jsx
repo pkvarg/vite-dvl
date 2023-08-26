@@ -1,5 +1,9 @@
 import React from 'react'
-import { AiOutlineDelete, AiOutlineFile } from 'react-icons/ai'
+import {
+  AiOutlineDelete,
+  AiOutlineFile,
+  AiOutlineCloudDownload,
+} from 'react-icons/ai'
 import axios from 'axios'
 import { toast } from 'react-hot-toast'
 
@@ -14,23 +18,61 @@ const AdminFilesComponent = ({
     (order) => order._id === currentOrderId && order
   )
 
-  const deleteFile = async (i) => {
-    try {
-      const index = i
+  const deleteFile = async (i, fileName) => {
+    if (window.confirm('Si si istý?')) {
+      try {
+        const index = i
 
-      const { data } = await axios.patch(
-        `http://localhost:2000/api/admin/dvl/files/${currentOrderId}`,
-        {
-          index,
-        }
-      )
-      if (data === 'OK') {
-        toast.success('Vymazané')
-        setShowAdminFiles(false)
+        const { data } = await axios.patch(
+          `http://localhost:2000/api/admin/dvl/files/${currentOrderId}`,
+          {
+            index,
+          }
+        )
+        deleteFileOnServer(fileName)
         getOrders()
+        if (data === 'OK') {
+          toast.success('Vymazané')
+          setShowAdminFiles(false)
+        }
+      } catch (error) {
+        console.log(error)
       }
+    } else {
+      alert('Nič sa nebude mazať :-)')
+    }
+  }
+
+  const deleteFileOnServer = async (fileName) => {
+    try {
+      await axios.delete(
+        `http://localhost:2000/api/admin/dvl/files/${fileName}`
+      )
+      // `https://pictusweb.online/api/admin/dvl/files/${fileName}`
+    } catch (error) {
+      console.error(error)
+      toast.error(error.response.data.error)
+    }
+  }
+
+  const downloadFileHandler = (fileName) => {
+    //(`https://pictusweb.online/uploads/${fileName}`)
+    try {
+      axios({
+        url: `http://localhost:2000/api/admin/dvl/files/${fileName}`,
+        method: 'GET',
+        responseType: 'blob', // Important for binary data like files
+      }).then((response) => {
+        const url = window.URL.createObjectURL(new Blob([response.data]))
+        const link = document.createElement('a')
+        link.href = url
+        link.setAttribute('download', fileName)
+        document.body.appendChild(link)
+        link.click()
+      })
     } catch (error) {
       console.log(error)
+      toast.error('Súbor nenájdený')
     }
   }
 
@@ -41,9 +83,14 @@ const AdminFilesComponent = ({
           <div key={file.fileName}>
             <AiOutlineFile className='file-icon' />
             <AiOutlineDelete
-              className='delete '
-              onClick={() => deleteFile(i)}
+              className='delete-file delete'
+              onClick={() => deleteFile(i, file.fileName)}
             />
+            <AiOutlineCloudDownload
+              className='download-file'
+              onClick={() => downloadFileHandler(file.fileName)}
+            />
+
             <p className='edit'>{file.fileName}</p>
           </div>
         ))}
