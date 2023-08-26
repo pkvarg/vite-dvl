@@ -111,8 +111,8 @@ const Admin = () => {
         formData.append('images', uploadedFiles[i])
       }
       const { data } = await axios.post(
-        // 'https://pictusweb.online/api/admin/dvl/orders',
-        'http://localhost:2000/api/admin/dvl/orders',
+        //'http://localhost:2000/api/admin/dvl/orders',
+        'https://pictusweb.online/api/admin/dvl/orders',
         formData
       )
 
@@ -127,8 +127,8 @@ const Admin = () => {
   const getOrders = async () => {
     try {
       const { data } = await axios.get(
-        'http://localhost:2000/api/admin/dvl/orders',
-        // 'https://pictusweb.online/api/admin/dvl/orders',
+        'https://pictusweb.online/api/admin/dvl/orders',
+        // 'http://localhost:2000/api/admin/dvl/orders',
         config
       )
 
@@ -142,8 +142,8 @@ const Admin = () => {
   const getSingleOrder = async (orderId) => {
     try {
       const { data } = await axios.get(
-        // `https://pictusweb.online/api/admin/dvl/orders/${orderId}`,
-        `http://localhost:2000/api/admin/dvl/orders/${orderId}`,
+        // `http://localhost:2000/api/admin/dvl/orders/${orderId}`,
+        `https://pictusweb.online/api/admin/dvl/orders/${orderId}`,
 
         config
       )
@@ -168,8 +168,8 @@ const Admin = () => {
         formData.append('images', uploadedFiles[i])
       }
       const { data } = await axios.patch(
-        // `https://pictusweb.online/api/admin/dvl/orders/${orderId}`,
-        `http://localhost:2000/api/admin/dvl/orders/${orderId}`,
+        // `http://localhost:2000/api/admin/dvl/orders/${orderId}`,
+        `https://pictusweb.online/api/admin/dvl/orders/${orderId}`,
         formData
       )
       if (data) setShowModal(false)

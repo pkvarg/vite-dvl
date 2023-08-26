@@ -24,7 +24,9 @@ const AdminFilesComponent = ({
         const index = i
 
         const { data } = await axios.patch(
-          `http://localhost:2000/api/admin/dvl/files/${currentOrderId}`,
+          // `http://localhost:2000/api/admin/dvl/files/${currentOrderId}`,
+
+          `https://pictusweb.online/api/admin/dvl/files/${currentOrderId}`,
           {
             index,
           }
@@ -46,9 +48,9 @@ const AdminFilesComponent = ({
   const deleteFileOnServer = async (fileName) => {
     try {
       await axios.delete(
-        `http://localhost:2000/api/admin/dvl/files/${fileName}`
+        `https://pictusweb.online/api/admin/dvl/files/${fileName}`
       )
-      // `https://pictusweb.online/api/admin/dvl/files/${fileName}`
+      //  `http://localhost:2000/api/admin/dvl/files/${fileName}`
     } catch (error) {
       console.error(error)
       toast.error(error.response.data.error)
@@ -56,10 +58,11 @@ const AdminFilesComponent = ({
   }
 
   const downloadFileHandler = (fileName) => {
-    //(`https://pictusweb.online/uploads/${fileName}`)
+    //url: `http://localhost:2000/api/admin/dvl/files/${fileName}`,
+
     try {
       axios({
-        url: `http://localhost:2000/api/admin/dvl/files/${fileName}`,
+        url: `https://pictusweb.online/api/admin/dvl/files/${fileName}`,
         method: 'GET',
         responseType: 'blob', // Important for binary data like files
       }).then((response) => {
