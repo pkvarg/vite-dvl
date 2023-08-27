@@ -369,10 +369,13 @@ const Admin = () => {
                     title={order.title}
                     name={order.name}
                     address={order.address}
-                    date={order.createdAt}
+                    date={order.date}
                     phone={order.phone}
                     description={order.description}
                     price={order.price}
+                    files={order.files}
+                    setShowAdminFiles={setShowAdminFiles}
+                    setCurrentOrderId={setCurrentOrderId}
                     orderIndex={i + 1}
                     id={order._id}
                     edit={edit}

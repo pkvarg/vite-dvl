@@ -32,11 +32,11 @@ const AdminFilesComponent = ({
           }
         )
         deleteFileOnServer(fileName)
-        getOrders()
         if (data === 'OK') {
           toast.success('Vymazané')
           setShowAdminFiles(false)
         }
+        getOrders()
       } catch (error) {
         console.log(error)
       }
@@ -82,7 +82,7 @@ const AdminFilesComponent = ({
   return (
     showAdminFiles && (
       <div className='files-modal'>
-        {currentOrder.files.map((file, i) => (
+        {currentOrder?.files?.map((file, i) => (
           <div key={file.fileName}>
             <AiOutlineFile className='file-icon' />
             <AiOutlineDelete
