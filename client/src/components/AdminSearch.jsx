@@ -2,14 +2,14 @@ import React, { useEffect, useState } from 'react'
 import { BsSearch } from 'react-icons/bs'
 
 function AdminSearch({
+  query,
+  setQuery,
   handleSearch,
   showOrderList,
   setShowOrderList,
   showSearchResults,
   setShowSearchResults,
 }) {
-  const [query, setQuery] = useState('')
-
   const handleChange = (e) => {
     setQuery(e.target.value)
   }

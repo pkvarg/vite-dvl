@@ -37,6 +37,8 @@ const Admin = () => {
   const [actionType, setActionType] = useState('')
   const [currentOrderId, setCurrentOrderId] = useState()
   const [showOderList, setShowOrderList] = useState(true)
+  const [query, setQuery] = useState('')
+
   const [showSearchResults, setShowSearchResults] = useState(false)
   const [showAdminFiles, setShowAdminFiles] = useState(false)
 
@@ -173,8 +175,9 @@ const Admin = () => {
         formData
       )
       if (data) setShowModal(false)
-      getOrders()
+      setQuery('')
       clearModal()
+      getOrders()
     } catch (error) {
       console.log(error)
       toast.error('error')
@@ -300,6 +303,8 @@ const Admin = () => {
                   handleSearch={handleSearch}
                   setShowOrderList={setShowOrderList}
                   setShowSearchResults={setShowSearchResults}
+                  query={query}
+                  setQuery={setQuery}
                 />
               </div>
             </>
