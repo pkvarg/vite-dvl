@@ -64,13 +64,13 @@ const AdminDashboard = ({
         </p>
 
         <p>
-          {price}&euro;
+          {price} &euro;
           {','}{' '}
         </p>
 
         <p className='description'>{description}</p>
         <div className='dashboard-icons'>
-          {files.length > 0 ? (
+          {files?.length > 0 ? (
             <AiOutlineFile
               className='action-icon-file'
               onClick={() => adminFiles(id)}

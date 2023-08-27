@@ -255,7 +255,7 @@ const Admin = () => {
             src='/img/home.webp'
             alt='home'
             className='home'
-            onClick={() => navigate('/')}
+            onClick={() => window.location.reload()}
           ></img>
           <h2>
             {displayDay} {displayDayOfMonth}. {displayMonth} {displayYear}
@@ -372,6 +372,7 @@ const Admin = () => {
                     date={order.createdAt}
                     phone={order.phone}
                     description={order.description}
+                    price={order.price}
                     orderIndex={i + 1}
                     id={order._id}
                     edit={edit}
