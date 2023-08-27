@@ -64,7 +64,7 @@ const AdminDashboard = ({
         </p>
 
         <p>
-          {price} &euro;
+          {price}&euro;
           {','}{' '}
         </p>
 
