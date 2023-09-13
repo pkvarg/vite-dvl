@@ -31,8 +31,8 @@ const ContactForm = () => {
 
   const increaseBots = async () => {
     const { data } = await axios.put(
-      `https://pictusweb.online/api/bots/dvl/increase`,
-      // `http://localhost:2000/api/bots/dvl/increase`,
+      `https://librosophia.online/api/bots/dvl/increase`,
+      // `http://localhost:7000/api/bots/dvl/increase`,
 
       config
     )

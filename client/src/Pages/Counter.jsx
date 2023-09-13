@@ -13,8 +13,8 @@ const Counter = () => {
   }
   const getBots = async () => {
     const { data } = await axios.get(
-      `https://pictusweb.online/api/bots/dvl/counter`,
-      // `http://localhost:2000/api/bots/dvl/counter`,
+      `https://librosophia.online/api/bots/dvl/counter`,
+      // `http://localhost:7000/api/bots/dvl/counter`,
 
       config
     )
@@ -23,26 +23,40 @@ const Counter = () => {
 
   const getVisitors = async () => {
     const { data } = await axios.get(
-      `https://pictusweb.online/api/visitors/dvl/counter`,
+      `https://librosophia.online/api/visitors/dvl/counter`,
 
-      // `http://localhost:2000/api/visitors/dvl/counter`,
+      // `http://localhost:7000/api/visitors/dvl/counter`,
 
       config
     )
     setVisitorsAgreed(data.agreed)
     setVisitorsDeclined(data.declined)
   }
+
+  const goBack = () => {
+    window.history.back()
+  }
   return (
     <div className='counter-page'>
-      <button
-        className=''
-        onClick={() => {
-          getBots()
-          getVisitors()
-        }}
-      >
-        Zobraziť
-      </button>
+      <div className='counter-buttons'>
+        <button
+          className=''
+          onClick={() => {
+            goBack()
+          }}
+        >
+          Naspäť
+        </button>
+        <button
+          className=''
+          onClick={() => {
+            getBots()
+            getVisitors()
+          }}
+        >
+          Zobraziť
+        </button>
+      </div>
       <div className='stats'>
         <p>Roboti: {count}</p>
         <p>Návštevy NES: {visitorsDeclined}</p>

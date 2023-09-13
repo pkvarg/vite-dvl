@@ -107,7 +107,7 @@ const AdminModal = ({
                 className='date-field'
                 type='date'
                 name='date'
-                // value={date}
+                required
                 onChange={(e) => setDate(e.target.value)}
               />
 

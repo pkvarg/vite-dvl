@@ -113,8 +113,8 @@ const Admin = () => {
         formData.append('images', uploadedFiles[i])
       }
       const { data } = await axios.post(
-        //'http://localhost:2000/api/admin/dvl/orders',
-        'https://pictusweb.online/api/admin/dvl/orders',
+        // 'http://localhost:7000/api/admin/dvl/orders',
+        'https://librosophia.online/api/admin/dvl/orders',
         formData
       )
 
@@ -129,8 +129,8 @@ const Admin = () => {
   const getOrders = async () => {
     try {
       const { data } = await axios.get(
-        'https://pictusweb.online/api/admin/dvl/orders',
-        // 'http://localhost:2000/api/admin/dvl/orders',
+        'https://librosophia.online/api/admin/dvl/orders',
+        // 'http://localhost:7000/api/admin/dvl/orders',
         config
       )
 
@@ -144,8 +144,8 @@ const Admin = () => {
   const getSingleOrder = async (orderId) => {
     try {
       const { data } = await axios.get(
-        // `http://localhost:2000/api/admin/dvl/orders/${orderId}`,
-        `https://pictusweb.online/api/admin/dvl/orders/${orderId}`,
+        // `http://localhost:7000/api/admin/dvl/orders/${orderId}`,
+        `https://librosophia.online/api/admin/dvl/orders/${orderId}`,
 
         config
       )
@@ -170,8 +170,8 @@ const Admin = () => {
         formData.append('images', uploadedFiles[i])
       }
       const { data } = await axios.patch(
-        // `http://localhost:2000/api/admin/dvl/orders/${orderId}`,
-        `https://pictusweb.online/api/admin/dvl/orders/${orderId}`,
+        // `http://localhost:7000/api/admin/dvl/orders/${orderId}`,
+        `https://librosophia.online/api/admin/dvl/orders/${orderId}`,
         formData
       )
       if (data) setShowModal(false)
@@ -187,9 +187,9 @@ const Admin = () => {
     if (window.confirm('Skutočne vymazať zákazku?')) {
       try {
         const { data } = await axios.delete(
-          `https://pictusweb.online/api/admin/dvl/orders/${orderId}`
+          `https://librosophia.online/api/admin/dvl/orders/${orderId}`
 
-          // `http://localhost:2000/api/admin/dvl/orders/${orderId}`
+          // `http://localhost:7000/api/admin/dvl/orders/${orderId}`
         )
         if (data === 'OK') toast.success('Vymazané')
         getOrders()
@@ -233,9 +233,9 @@ const Admin = () => {
     if (query !== '') {
       try {
         const response = await axios.get(
-          `https://pictusweb.online/api/admin/dvl/orders/search/${query}`
+          `https://librosophia.online/api/admin/dvl/orders/search/${query}`
 
-          // `http://localhost:2000/api/admin/dvl/orders/search/${query}`
+          // `http://localhost:7000/api/admin/dvl/orders/search/${query}`
         )
         setSearchResults(response.data)
         setShowOrderList(false)
@@ -271,10 +271,16 @@ const Admin = () => {
                 alt='Google-Drive'
                 onClick={openGoogleDrive}
               />
+              <a className='go-to-stats' href='/counter'>
+                Štatistiky
+              </a>
               <RiLogoutBoxRLine className='logout-icon' onClick={signUserOut} />
             </div>
           ) : (
             <>
+              <a className='go-to-stats' href='/counter'>
+                Štatistiky
+              </a>
               <img
                 className='google-sign-in'
                 src='/img/google.webp'

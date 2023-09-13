@@ -15,8 +15,8 @@ const Page = () => {
 
   const increaseVisitorsDeclined = async () => {
     const { data } = await axios.put(
-      `https://pictusweb.online/api/visitors/dvl/increase`,
-      // `http://localhost:2000/api/visitors/dvl/increase`,
+      `https://librosophia.online/api/visitors/dvl/increase`,
+      // `http://localhost:7000/api/visitors/dvl/increase`,
       config
     )
     console.log('vstrsDec:', data.visitorsDeclinedDvl)
@@ -24,8 +24,8 @@ const Page = () => {
 
   const increaseVisitorsAgreed = async () => {
     const { data } = await axios.put(
-      `https://pictusweb.online/api/visitors/dvl/agree/increase`,
-      // `http://localhost:2000/api/visitors/dvl/agree/increase`,
+      `https://librosophia.online/api/visitors/dvl/agree/increase`,
+      // `http://localhost:7000/api/visitors/dvl/agree/increase`,
       config
     )
   }
