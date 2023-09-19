@@ -379,7 +379,6 @@ p.modal-date {
 .stats {
   font-size: 40px;
   cursor: pointer;
-  margin-bottom: 8%;
 }
 
 .stats:hover {
@@ -392,7 +391,7 @@ p.modal-date {
 .stats-nosign-in {
   font-size: 40px;
   cursor: pointer;
-  margin-bottom: 5px;
+  margin-bottom: 0px;
 }
 
 .stats-nosign-in:hover {
@@ -532,7 +531,6 @@ p.modal-date {
   }
 
   .stats {
-    margin-bottom: 25px;
     margin-right: 10px;
   }
 }

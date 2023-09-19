@@ -716,15 +716,16 @@ i.bi.bi-r-square {
   color: #ffffff;
 }
 
-.stats {
+.counter-stats {
   margin-top: 25px;
   display: flex;
   flex-direction: column;
   gap: 1px;
 }
 
-.stats p {
+.counter-stats p {
   margin: 0;
+  font-size: 25px;
 }
 
 .counter-buttons {

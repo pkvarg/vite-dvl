@@ -40,7 +40,6 @@ const Counter = () => {
     <div className='counter-page'>
       <div className='counter-buttons'>
         <button
-          className=''
           onClick={() => {
             goBack()
           }}
@@ -48,7 +47,6 @@ const Counter = () => {
           Naspäť
         </button>
         <button
-          className=''
           onClick={() => {
             getBots()
             getVisitors()
@@ -57,7 +55,7 @@ const Counter = () => {
           Zobraziť
         </button>
       </div>
-      <div className='stats'>
+      <div className='counter-stats'>
         <p>Roboti: {count}</p>
         <p>Návštevy NES: {visitorsDeclined}</p>
         <p>Návštevy OK: {visitorsAgreed}</p>
