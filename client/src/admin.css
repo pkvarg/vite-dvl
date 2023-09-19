@@ -376,7 +376,33 @@ p.modal-date {
   cursor: pointer;
 }
 
-.go-to-stats {
+.stats {
+  font-size: 40px;
+  cursor: pointer;
+  margin-bottom: 8%;
+}
+
+.stats:hover {
+  background-color: white;
+  border-radius: 50px;
+  border: 2px solid #1fa945;
+  width: 60px;
+}
+
+.stats-nosign-in {
+  font-size: 40px;
+  cursor: pointer;
+  margin-bottom: 5px;
+}
+
+.stats-nosign-in:hover {
+  background-color: white;
+  border-radius: 50px;
+  border: 2px solid #1fa945;
+  width: 60px;
+}
+
+/* .go-to-stats {
   text-decoration: none;
   color: #0fe94d;
   font-size: 30px;
@@ -384,7 +410,7 @@ p.modal-date {
 
 .go-to-stats:hover {
   color: #f4b400;
-}
+} */
 /* MEDIA QUERIES MEDIA QUERIES MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES MEDIA QUERIES MEDIA QUERIES MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIESMEDIA QUERIES MEDIA QUERIES MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIESMEDIA QUERIES MEDIA QUERIES MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIESMEDIA QUERIES MEDIA QUERIES MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES  MEDIA QUERIES */
 
 @media (min-width: 100px) and (max-width: 990px) {
@@ -441,7 +467,7 @@ p.modal-date {
   .out-and-drive {
     flex-direction: row;
     justify-content: space-between;
-    width: 50%;
+    width: 60%;
     margin-bottom: 0px;
   }
 
@@ -503,5 +529,10 @@ p.modal-date {
     right: -3.5%;
     width: 90vw;
     flex-direction: column;
+  }
+
+  .stats {
+    margin-bottom: 25px;
+    margin-right: 10px;
   }
 }

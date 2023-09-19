@@ -15,6 +15,7 @@ import {
 import axios from 'axios'
 import './../admin.css'
 import { RiLogoutBoxRLine } from 'react-icons/ri'
+import { FcStatistics } from 'react-icons/fc'
 
 const Admin = () => {
   const navigate = useNavigate()
@@ -250,6 +251,9 @@ const Admin = () => {
     window.open('https://drive.google.com', '_blank')
   }
 
+  const goCounter = () => {
+    navigate('/counter')
+  }
   return (
     <>
       <div className='admin'>
@@ -271,16 +275,18 @@ const Admin = () => {
                 alt='Google-Drive'
                 onClick={openGoogleDrive}
               />
-              <a className='go-to-stats' href='/counter'>
-                Štatistiky
-              </a>
+
+              <FcStatistics className='stats' onClick={goCounter} />
+
               <RiLogoutBoxRLine className='logout-icon' onClick={signUserOut} />
             </div>
           ) : (
             <>
-              <a className='go-to-stats' href='/counter'>
+              {/* <a className='go-to-stats' href='/counter'>
                 Štatistiky
-              </a>
+              </a> */}
+              <FcStatistics className='stats-nosign-in' onClick={goCounter} />
+
               <img
                 className='google-sign-in'
                 src='/img/google.webp'

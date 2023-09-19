@@ -693,7 +693,7 @@ i.bi.bi-r-square {
 }
 
 .counter-page {
-  background-color: #fe9400;
+  background-color: #000000;
   color: #fff;
   height: 100vh;
   display: flex;
@@ -703,17 +703,17 @@ i.bi.bi-r-square {
 }
 
 .counter-page button {
-  border: 1px solid #fff;
+  border: 1px solid #1fa945;
   background: transparent;
   border-radius: 5px;
-  color: #fff;
+  color: #1fa945;
   font-size: 25px;
   cursor: pointer;
 }
 
 .counter-page button:hover {
-  background-color: #f0eceb;
-  color: #fe9400;
+  border: 1px solid #ffffff;
+  color: #ffffff;
 }
 
 .stats {
