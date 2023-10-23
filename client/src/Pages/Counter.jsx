@@ -13,7 +13,7 @@ const Counter = () => {
   }
   const getBots = async () => {
     const { data } = await axios.get(
-      `https://librosophia.online/api/bots/dvl/counter`,
+      `https://km.pictusweb.com/api/bots/dvl/counter`,
       // `http://localhost:7000/api/bots/dvl/counter`,
 
       config
@@ -23,7 +23,7 @@ const Counter = () => {
 
   const getVisitors = async () => {
     const { data } = await axios.get(
-      `https://librosophia.online/api/visitors/dvl/counter`,
+      `https://km.pictusweb.com/api/visitors/dvl/counter`,
 
       // `http://localhost:7000/api/visitors/dvl/counter`,
 

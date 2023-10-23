@@ -31,7 +31,7 @@ const ContactForm = () => {
 
   const increaseBots = async () => {
     const { data } = await axios.put(
-      `https://librosophia.online/api/bots/dvl/increase`,
+      `https://km.pictusweb.com/api/bots/dvl/increase`,
       // `http://localhost:7000/api/bots/dvl/increase`,
 
       config

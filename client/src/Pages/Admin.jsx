@@ -115,7 +115,7 @@ const Admin = () => {
       }
       const { data } = await axios.post(
         // 'http://localhost:7000/api/admin/dvl/orders',
-        'https://librosophia.online/api/admin/dvl/orders',
+        'https://km.pictusweb.com/api/admin/dvl/orders',
         formData
       )
 
@@ -130,7 +130,7 @@ const Admin = () => {
   const getOrders = async () => {
     try {
       const { data } = await axios.get(
-        'https://librosophia.online/api/admin/dvl/orders',
+        'https://km.pictusweb.com/api/admin/dvl/orders',
         // 'http://localhost:7000/api/admin/dvl/orders',
         config
       )
@@ -146,7 +146,7 @@ const Admin = () => {
     try {
       const { data } = await axios.get(
         // `http://localhost:7000/api/admin/dvl/orders/${orderId}`,
-        `https://librosophia.online/api/admin/dvl/orders/${orderId}`,
+        `https://km.pictusweb.com/api/admin/dvl/orders/${orderId}`,
 
         config
       )
@@ -172,7 +172,7 @@ const Admin = () => {
       }
       const { data } = await axios.patch(
         // `http://localhost:7000/api/admin/dvl/orders/${orderId}`,
-        `https://librosophia.online/api/admin/dvl/orders/${orderId}`,
+        `https://km.pictusweb.com/api/admin/dvl/orders/${orderId}`,
         formData
       )
       if (data) setShowModal(false)
@@ -188,7 +188,7 @@ const Admin = () => {
     if (window.confirm('Skutočne vymazať zákazku?')) {
       try {
         const { data } = await axios.delete(
-          `https://librosophia.online/api/admin/dvl/orders/${orderId}`
+          `https://km.pictusweb.com/api/admin/dvl/orders/${orderId}`
 
           // `http://localhost:7000/api/admin/dvl/orders/${orderId}`
         )
@@ -234,7 +234,7 @@ const Admin = () => {
     if (query !== '') {
       try {
         const response = await axios.get(
-          `https://librosophia.online/api/admin/dvl/orders/search/${query}`
+          `https://km.pictusweb.com/api/admin/dvl/orders/search/${query}`
 
           // `http://localhost:7000/api/admin/dvl/orders/search/${query}`
         )

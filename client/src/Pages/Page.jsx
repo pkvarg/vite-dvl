@@ -15,7 +15,7 @@ const Page = () => {
 
   const increaseVisitorsDeclined = async () => {
     const { data } = await axios.put(
-      `https://librosophia.online/api/visitors/dvl/increase`,
+      `https://km.pictusweb.com/api/visitors/dvl/increase`,
       // `http://localhost:7000/api/visitors/dvl/increase`,
       config
     )
@@ -24,7 +24,7 @@ const Page = () => {
 
   const increaseVisitorsAgreed = async () => {
     const { data } = await axios.put(
-      `https://librosophia.online/api/visitors/dvl/agree/increase`,
+      `https://km.pictusweb.com/api/visitors/dvl/agree/increase`,
       // `http://localhost:7000/api/visitors/dvl/agree/increase`,
       config
     )

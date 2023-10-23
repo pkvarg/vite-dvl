@@ -26,7 +26,7 @@ const AdminFilesComponent = ({
         const { data } = await axios.patch(
           // `http://localhost:7000/api/admin/dvl/files/${currentOrderId}`,
 
-          `https://librosophia.online/api/admin/dvl/files/${currentOrderId}`,
+          `https://km.pictusweb.com/api/admin/dvl/files/${currentOrderId}`,
           {
             index,
           }
@@ -48,7 +48,7 @@ const AdminFilesComponent = ({
   const deleteFileOnServer = async (fileName) => {
     try {
       await axios.delete(
-        `https://librosophia.online/api/admin/dvl/files/${fileName}`
+        `https://km.pictusweb.com/api/admin/dvl/files/${fileName}`
       )
       //  `http://localhost:7000/api/admin/dvl/files/${fileName}`
     } catch (error) {
@@ -62,7 +62,7 @@ const AdminFilesComponent = ({
 
     try {
       axios({
-        url: `https://librosophia.online/api/admin/dvl/files/${fileName}`,
+        url: `https://km.pictusweb.com/api/admin/dvl/files/${fileName}`,
         method: 'GET',
         responseType: 'blob', // Important for binary data like files
       }).then((response) => {
