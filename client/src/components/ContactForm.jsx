@@ -30,15 +30,34 @@ const ContactForm = () => {
   }
 
   const increaseBots = async () => {
-    const { data } = await axios.put(
-      `https://km.pictusweb.com/api/bots/dvl/increase`,
-      // `http://localhost:7000/api/bots/dvl/increase`,
-
-      config
-    )
-    // setBotsCount(data)
-    // console.log('ctc:', data)
+    const apiUrl = 'https://hono-api.pictusweb.com/api/bots/km/increase'
+    //const apiUrl = 'http://localhost:3013/api/bots/km/increase'
+    try {
+      const { data } = await axios.put(apiUrl, {}, config)
+    } catch (error) {
+      console.error('Error increasing bots:', error)
+    }
   }
+
+  const increaseEmails = async () => {
+    const apiUrl = 'https://hono-api.pictusweb.com/api/emails/km/increase'
+    //const apiUrl = 'http://localhost:3013/api/emails/km/increase'
+    try {
+      const { data } = await axios.put(apiUrl, {}, config)
+    } catch (error) {
+      console.error('Error increasing emails:', error)
+    }
+  }
+
+  // const increaseBots = async () => {
+  //   const { data } = await axios.put(
+  //     `https://km.pictusweb.com/api/bots/dvl/increase`,
+  //     // `http://localhost:7000/api/bots/dvl/increase`,
+
+  //     config
+  //   )
+
+  // }
 
   const sendEmail = (e) => {
     e.preventDefault()
@@ -59,18 +78,19 @@ const ContactForm = () => {
           import.meta.env.VITE_EMAILJS_SERVICE,
           import.meta.env.VITE_EMAILJS_TEMPLATE,
           form.current,
-          import.meta.env.VITE_EMAILJS_USER
+          import.meta.env.VITE_EMAILJS_USER,
         )
         .then(
           (result) => {
             console.log(result.text)
             setMessageSuccess('Vaša správa bola úspešne odoslaná!')
             console.log('message sent')
+            increaseEmails()
           },
           (error) => {
             console.log(error.text)
             setMessage('Chyba! Kontaktujte nás telefonicky alebo emailom.')
-          }
+          },
         )
       setName('')
       setAddress('')
@@ -83,107 +103,105 @@ const ContactForm = () => {
   }
 
   return (
-    <section className='section-2' id='contact'>
-      <div className='container'>
-        <div className='contact'>
+    <section className="section-2" id="contact">
+      <div className="container">
+        <div className="contact">
           <h3>Kontaktujte nás. </h3>
           <h3>Všetko ostatné vyriešime za Vás.</h3>
-          {messageSuccess && (
-            <Message variant='success'>{messageSuccess}</Message>
-          )}
-          {message && <Message variant='danger'>{message}</Message>}
-          <div className='container'>
+          {messageSuccess && <Message variant="success">{messageSuccess}</Message>}
+          {message && <Message variant="danger">{message}</Message>}
+          <div className="container">
             <form ref={form} onSubmit={sendEmail}>
-              <label className='form-label'>
+              <label className="form-label">
                 Meno <sup>*</sup>
               </label>
               <input
-                className='form-control'
-                label='Meno'
-                type='text'
-                name='user_name'
+                className="form-control"
+                label="Meno"
+                type="text"
+                name="user_name"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                required='required'
+                required="required"
               />
-              <label className='form-label'>
+              <label className="form-label">
                 Mesto a adresa <sup>*</sup>
               </label>
               <input
-                className='form-control'
-                label='Mesto a adresa'
-                type='text'
-                name='user_address'
+                className="form-control"
+                label="Mesto a adresa"
+                type="text"
+                name="user_address"
                 value={address}
                 onChange={(e) => setAddress(e.target.value)}
-                required='required'
+                required="required"
               />
-              <label className='form-label'>
+              <label className="form-label">
                 Email <sup>*</sup>
               </label>
               <input
-                className='form-control'
-                label='Email'
-                type='email'
-                name='user_email'
+                className="form-control"
+                label="Email"
+                type="email"
+                name="user_email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                required='required'
+                required="required"
               />
-              <label className='form-label'>
+              <label className="form-label">
                 Telefón <sup>*</sup>
               </label>
               <input
-                className='form-control'
-                label='Telefon'
-                type='text'
-                name='user_phone'
+                className="form-control"
+                label="Telefon"
+                type="text"
+                name="user_phone"
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
-                required='required'
+                required="required"
               />
-              <label className='form-label'>
+              <label className="form-label">
                 Popíšte čo potrebujete <sup>*</sup>
               </label>
               <textarea
-                className='form-control'
-                label='Text'
-                rows='5'
-                name='message'
+                className="form-control"
+                label="Text"
+                rows="5"
+                name="message"
                 value={mailMessage}
                 onChange={(e) => setMailMessage(e.target.value)}
-                required='required'
+                required="required"
               ></textarea>
-              <div className='form-check my-3'>
+              <div className="form-check my-3">
                 <input
-                  className='form-check-input'
-                  label='Checkbox'
-                  id='flexCheckDefault'
-                  type='checkbox'
+                  className="form-check-input"
+                  label="Checkbox"
+                  id="flexCheckDefault"
+                  type="checkbox"
                   defaultChecked={false}
                   value={checkBox}
                   onChange={handleCheckBox}
-                  required='required'
+                  required="required"
                 />
-                <label className='form-check-label' htmlFor='flexCheckDefault'>
+                <label className="form-check-label" htmlFor="flexCheckDefault">
                   Súhlasím so spracovaním údajov
                 </label>
               </div>
               <input
-                className='form-control hidden'
-                type='text'
-                label='Password'
+                className="form-control hidden"
+                type="text"
+                label="Password"
                 defaultValue={passwordGroupOne}
                 onChange={(e) => setPasswordGroupOne(e.target.value)}
               />
               <input
-                className='form-control hidden'
-                label='Password'
-                type='text'
+                className="form-control hidden"
+                label="Password"
+                type="text"
                 defaultValue={passwordGroupTwo}
                 onChange={(e) => setPasswordGroupTwo(e.target.value)}
               />
-              <button className='btn btn-send my-3' type='submit' value='Send'>
+              <button className="btn btn-send my-3" type="submit" value="Send">
                 Vyriešiť čo najskôr
               </button>
             </form>
