@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useRef, useState, useEffect } from 'react'
 import emailjs from '@emailjs/browser'
 import Message from './Message'
 import axios from 'axios'
@@ -13,8 +13,71 @@ const ContactForm = () => {
   const [mailMessage, setMailMessage] = useState('')
   const [checkBox, setCheckBox] = useState(false)
 
+  // Anti-spam: Time-based validation
+  const [formStartTime, setFormStartTime] = useState(0)
+
+  // Anti-spam: Honeypot field
+  const [honeypot, setHoneypot] = useState('')
+
+  // Initialize form start time on mount
+  useEffect(() => {
+    setFormStartTime(Date.now())
+  }, [])
+
   const handleCheckBox = () => {
     setCheckBox((current) => !current)
+  }
+
+  // Anti-spam: Content validation function
+  const isSpamContent = (text) => {
+    if (!text || text.trim().length < 3) return true
+
+    // Check for excessive special characters (more than 40% of content)
+    const specialChars = text.match(/[^a-zA-Z0-9\s]/g) || []
+    if (specialChars.length / text.length > 0.4) return true
+
+    // Check for random character patterns (less than 25% vowels for stricter validation)
+    const vowels = text.match(/[aeiouAEIOUáéíóúýäëïöüÁÉÍÓÚÝ]/g) || []
+    if (vowels.length / text.length < 0.25) return true
+
+    // Check for excessive uppercase (more than 40% uppercase letters for stricter validation)
+    const uppercase = text.match(/[A-Z]/g) || []
+    const letters = text.match(/[a-zA-Z]/g) || []
+    if (letters && letters.length > 0 && uppercase.length / letters.length > 0.4) return true
+
+    // Check for repetitive characters (same char 5+ times in a row)
+    if (/(.)\1{4,}/.test(text)) return true
+
+    return false
+  }
+
+  // Anti-spam: Rate limiting (client-side)
+  const checkRateLimit = () => {
+    const storageKey = 'contact_form_submissions'
+    const now = Date.now()
+    const oneHour = 60 * 60 * 1000 // 1 hour in milliseconds
+    const maxSubmissions = 3
+
+    try {
+      const stored = localStorage.getItem(storageKey)
+      const submissions = stored ? JSON.parse(stored) : []
+
+      // Filter out submissions older than 1 hour
+      const recentSubmissions = submissions.filter((time) => now - time < oneHour)
+
+      if (recentSubmissions.length >= maxSubmissions) {
+        return false // Rate limit exceeded
+      }
+
+      // Add current submission and save
+      recentSubmissions.push(now)
+      localStorage.setItem(storageKey, JSON.stringify(recentSubmissions))
+      return true
+    } catch (error) {
+      // If localStorage is not available, allow submission
+      console.error('Rate limit check error:', error)
+      return true
+    }
   }
 
   const form = useRef()
@@ -62,6 +125,58 @@ const ContactForm = () => {
   const sendEmail = (e) => {
     e.preventDefault()
 
+    // Anti-spam Check 1: Honeypot field
+    if (honeypot !== '') {
+      setMessage('Neodoslané! Kontaktujte nás telefonicky alebo emailom.')
+      setName('')
+      setAddress('')
+      setEmail('')
+      setPhone('')
+      setMailMessage('')
+      increaseBots()
+      const element = document.getElementById('contact')
+      element.scrollIntoView({ behavior: 'smooth' })
+      return
+    }
+
+    // Anti-spam Check 2: Time-based validation (minimum 3 seconds)
+    const timeSpent = Date.now() - formStartTime
+    if (timeSpent < 3000) {
+      setMessage('Neodoslané! Kontaktujte nás telefonicky alebo emailom.')
+      setName('')
+      setAddress('')
+      setEmail('')
+      setPhone('')
+      setMailMessage('')
+      increaseBots()
+      const element = document.getElementById('contact')
+      element.scrollIntoView({ behavior: 'smooth' })
+      return
+    }
+
+    // Anti-spam Check 3: Content validation
+    if (isSpamContent(name) || isSpamContent(mailMessage)) {
+      setMessage('Neodoslané! Kontaktujte nás telefonicky alebo emailom.')
+      setName('')
+      setAddress('')
+      setEmail('')
+      setPhone('')
+      setMailMessage('')
+      increaseBots()
+      const element = document.getElementById('contact')
+      element.scrollIntoView({ behavior: 'smooth' })
+      return
+    }
+
+    // Anti-spam Check 4: Rate limiting
+    if (!checkRateLimit()) {
+      setMessage('Neodoslané! Kontaktujte nás telefonicky alebo emailom.')
+      const element = document.getElementById('contact')
+      element.scrollIntoView({ behavior: 'smooth' })
+      return
+    }
+
+    // Anti-spam Check 5: Legacy honeypot (password fields)
     if (passwordGroupOne !== x || passwordGroupTwo !== y) {
       setMessage('Neodoslané! Kontaktujte nás telefonicky alebo emailom.')
       setName('')
@@ -160,6 +275,21 @@ const ContactForm = () => {
                 onChange={(e) => setPhone(e.target.value)}
                 required="required"
               />
+
+              {/* Anti-spam: Honeypot field - hidden with CSS, bots will fill it */}
+              <div style={{ position: 'absolute', left: '-9999px', opacity: 0 }} aria-hidden="true">
+                <label htmlFor="website_url">Website</label>
+                <input
+                  type="text"
+                  id="website_url"
+                  name="website_url"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  value={honeypot}
+                  onChange={(e) => setHoneypot(e.target.value)}
+                />
+              </div>
+
               <label className="form-label">
                 Popíšte čo potrebujete <sup>*</sup>
               </label>
