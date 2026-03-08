@@ -54,15 +54,28 @@ const Page = () => {
       <CookieConsent
         location="bottom"
         style={{
-          background: '#adbbcb',
-          color: '#000',
-          fontSize: '22.5px',
-          textAlign: 'justify',
+          background: '#1a1916',
+          color: '#f5f0e8',
+          fontSize: '15px',
+          fontFamily: '"DM Sans", sans-serif',
+          borderTop: '1px solid rgba(200, 134, 10, 0.3)',
+          padding: '18px 32px',
+          alignItems: 'center',
+          gap: '16px',
         }}
         buttonStyle={{
-          background: '#1d9f2f',
+          background: '#1d7a35',
           color: '#fff',
-          fontSize: '17.5px',
+          fontSize: '14px',
+          fontFamily: '"DM Sans", sans-serif',
+          fontWeight: '500',
+          letterSpacing: '0.05em',
+          textTransform: 'uppercase',
+          padding: '10px 24px',
+          borderRadius: '4px',
+          border: 'none',
+          cursor: 'pointer',
+          whiteSpace: 'nowrap',
         }}
         buttonText="Súhlasím"
         expires={365}
@@ -72,9 +85,16 @@ const Page = () => {
           increaseVisitors()
         }}
         declineButtonStyle={{
-          background: 'red',
-          color: '#fff',
-          fontSize: '17.5px',
+          background: 'transparent',
+          color: '#9e9890',
+          fontSize: '14px',
+          fontFamily: '"DM Sans", sans-serif',
+          fontWeight: '400',
+          padding: '10px 20px',
+          borderRadius: '4px',
+          border: '1px solid rgba(158, 152, 144, 0.4)',
+          cursor: 'pointer',
+          whiteSpace: 'nowrap',
         }}
         declineButtonText="Nesúhlasím"
         onAccept={() => {
@@ -83,7 +103,8 @@ const Page = () => {
         }}
       >
         Táto stránka používa len analytické a pre fungovanie webu nevyhnutné cookies. Nepoužívame
-        funkčné ani marketingové cookies. <a href="/gdpr"> GDPR</a>
+        funkčné ani marketingové cookies.{' '}
+        <a href="/gdpr" style={{ color: '#c8860a', textDecoration: 'none' }}>GDPR</a>
       </CookieConsent>
       <Footer />
     </>
