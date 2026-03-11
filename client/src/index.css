@@ -57,7 +57,7 @@ body {
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(to bottom right, rgba(20, 20, 18, 0.85) 40%, rgba(200, 134, 10, 0.3) 100%),
+    linear-gradient(to bottom right, rgba(20, 20, 18, 0.7) 40%, rgba(200, 134, 10, 0.3) 100%),
     url('/img/dvl-main.webp');
   background-repeat: no-repeat;
   background-position: center center;
