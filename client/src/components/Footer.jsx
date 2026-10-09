@@ -34,6 +34,10 @@ const Footer = () => {
         </div>
       </div>
       <div className='footer-bottom'>
+        <p className='footer-company'>
+          Tomáš Dovala, Rovniankova 1662/15, 851 02 Bratislava-Petržalka, IČO: 48203068,
+          zapísaný v živnostenskom registri Okresného úradu Bratislava, č. 650-17696
+        </p>
         <a href='https://pictusweb.sk' target='_blank' rel='noopener noreferrer'>
           &#60;&#47;&#62; PICTUSWEB Development
         </a>

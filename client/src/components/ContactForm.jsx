@@ -11,7 +11,6 @@ const ContactForm = () => {
   const [email, setEmail] = useState('')
   const [phone, setPhone] = useState('')
   const [mailMessage, setMailMessage] = useState('')
-  const [checkBox, setCheckBox] = useState(false)
 
   // Anti-spam: Time-based validation
   const [formStartTime, setFormStartTime] = useState(0)
@@ -23,10 +22,6 @@ const ContactForm = () => {
   useEffect(() => {
     setFormStartTime(Date.now())
   }, [])
-
-  const handleCheckBox = () => {
-    setCheckBox((current) => !current)
-  }
 
   // Anti-spam: Content validation function
   const isSpamContent = (text) => {
@@ -297,21 +292,10 @@ const ContactForm = () => {
               onChange={(e) => setMailMessage(e.target.value)}
               required="required"
             ></textarea>
-            <div className="form-check my-3">
-              <input
-                className="form-check-input"
-                label="Checkbox"
-                id="flexCheckDefault"
-                type="checkbox"
-                defaultChecked={false}
-                value={checkBox}
-                onChange={handleCheckBox}
-                required="required"
-              />
-              <label className="form-check-label" htmlFor="flexCheckDefault">
-                Súhlasím so spracovaním údajov
-              </label>
-            </div>
+            <p className="form-privacy-note my-3">
+              Údaje z formulára použijem len na odpoveď a prípravu cenovej ponuky a uchovám ich 2 roky.
+              Viac v <a href="/gdpr">zásadách ochrany osobných údajov</a>.
+            </p>
             <input
               className="form-control hidden"
               type="text"

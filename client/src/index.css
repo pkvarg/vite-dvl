@@ -1050,3 +1050,21 @@ footer {
     font-size: 1.2rem;
   }
 }
+
+/* Privacy: notice under the contact form and operator details in the footer */
+.form-privacy-note {
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+
+.form-privacy-note a {
+  color: var(--accent-amber);
+  text-decoration: underline;
+}
+
+.footer-company {
+  margin: 0 0 8px;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
